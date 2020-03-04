@@ -11,6 +11,10 @@ app.listen(app.get('port'), function(){
     app.get('port') + '; press Ctrl-C to terminate.' );
     });
 
+    app.get('/', (req, res) => {
+        res.render("index");
+        }
+    );
 
 // Fetching all data from GEOJSON, Filtering should be added later on
 fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json')
