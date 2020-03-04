@@ -1,14 +1,5 @@
-var cultuurLocatiesGeoJson = 'cultuurlocaties.geojson';
+var map = L.map('map').setView([51.505, -0.09], 13);
 
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-
-
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(mymap);
-
-
-var marker = L.marker([51.5, -0.09]).addTo(mymap);
-
-L.geoJSON(geojsonFeature).addTo(mymap);
-
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
+}).addTo(map);
