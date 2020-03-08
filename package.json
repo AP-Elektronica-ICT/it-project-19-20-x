@@ -1,8 +1,12 @@
 {
-  "name": "it-project-x",
+  "name": "it-project-19-20-x",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,12 +19,6 @@
   "bugs": {
     "url": "https://github.com/AP-Elektronica-ICT/it-project-19-20-x/issues"
   },
-<<<<<<< HEAD
-  "homepage": "https://github.com/AP-Elektronica-ICT/it-project-19-20-x/index.html",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
-=======
-  "homepage": "https://github.com/AP-Elektronica-ICT/it-project-19-20-x#readme"
->>>>>>> LeafletFeature
+  "homepage": "https://github.com/AP-Elektronica-ICT/it-project-19-20-x#readme",
+  "description": ""
 }
