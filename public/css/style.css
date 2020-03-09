@@ -79,7 +79,11 @@ span {
 }
 
 
-
+@font-face
+{
+    font-family: 'Antwerpen Regular';
+    src: "../Antwerpen_lettertype/Antwerpen webfonts/Antwerpen-Regulqr.ttf"
+}
 
 
 
