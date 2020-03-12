@@ -29,6 +29,7 @@
 </head>
 <body>
     <header>
+        <!-- Logo Antwerpen -->
         <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
         <nav>
             <ul>
@@ -39,7 +40,17 @@
         </nav>
     </header>
     <main>
-            <div id="map"></div>    
+        <!-- Sidenav -->
+        <div id="sidenav">
+            <span onclick="openNav()">open</span>
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
+              </div>
+
+        <!-- Map -->
+            <div id="map"></div> 
+        </div>
     </main>
     <footer>
 

@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: grey;
+    background-color: white;
     display: grid;
     grid-template-areas:
         'header header header header header'
@@ -71,11 +71,11 @@ footer{
 
 
 li a, a:link{
-    color: white;
+    color: black;
 }
 
 span {
-    color: white;
+    color: black;
 }
 
 
