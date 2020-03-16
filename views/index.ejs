@@ -33,7 +33,7 @@
         <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
         <nav>
             <ul>
-                <li><a href=#>lijst</a></li>
+                <li><a href=#> <span onclick="CheckNav()">lijst</span></a></li>
                 <li><a href= #>contact</a></li>
                 <li><a href= #>over ons</a></li>
             </ul>
@@ -42,9 +42,8 @@
     <main>
         <!-- Sidenav -->
         <div id="sidenav">
-            <span onclick="openNav()">open</span>
+            <!-- <span onclick="openNav()">open</span> -->
             <div id="mySidenav" class="sidenav">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
                 <a href="#">Placeholder</a>
                 <a href="#">Placeholder</a>
@@ -66,11 +65,24 @@
 
 
 <script>
-function openNav() {
+
+function CheckNav()
+{
+    navSize = document.getElementById("mySidenav").style.width;
+    console.log(navSize)
+    if (navSize == "250px") {
+        return closeNav();
+    }
+    return openNav();
+}
+
+function openNav() 
+{
   document.getElementById("mySidenav").style.width = "250px";
 }
 
 function closeNav() {
+
   document.getElementById("mySidenav").style.width = "0";
 }
 </script>
