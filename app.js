@@ -2,7 +2,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const ejs = require('ejs');
 
-//API fetch
+//API fetc
 let jsonData;
 
 const app = express();
