@@ -41,6 +41,7 @@ app.listen(app.get('port'), () =>
 {
   console.log(`Express Started on http://localhost:${
     app.get('port')}; press Ctrl-c to terminate.`);
+    JSON_Data()
 });
 
 

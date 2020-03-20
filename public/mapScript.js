@@ -36,4 +36,7 @@ function cultuurLocaties()
 
 }
 
-function erfgooedLocaties();
+function erfgooedLocaties()
+{
+
+}
