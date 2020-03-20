@@ -11,7 +11,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 async function getJSON_Data()
 {
-    const url ="/JSONdata";
+    const url ="/data";
     const response = await fetch(url);
     const json_Data = await response.json();
     return json_Data;
@@ -35,7 +35,7 @@ function Locaties(data)
 {
     L.geoJSON(cultuurLocatieData,{onEachFeatures: function (feature, layer) {
         layer.bindPopup(feature[0].attributes.naam);
-        L.marker([features[0].geometry.x, features[0].geometry.y]);
+        L.marker([attributes.LAT, attributes.LON]);
     }}).addTo(map);
 }
 /*

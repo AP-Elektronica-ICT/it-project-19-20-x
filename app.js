@@ -21,16 +21,22 @@ async function JSON_Data()
   const responseErfgoed = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1%3D1&outFields=*&outSR=4326&f=json')
   let dataErfgoed = await responseErfgoed.json();
   dataErfgoed = JSON.stringify(dataErfgoed)
+
+
+
       app.get('/', (req,res) => {
-        res.render('index', {'jsonData': dataCultuur});
+        res.render('index', {'jsonData': dataCultuur, 'jsonData2': dataErfgoed});
+
+        return [dataCultuur, dataErfgoed];
 });
 
 // Proxy om data naar mapScript te sturen
-app.get("/JSONdata", (request, response) => 
+app.get("/data", (request, response) => 
 {
   JSON_Data().then(data => 
   {
-    response.json(data);
+    response.json(JSON.stringify(data));
+    console.log(data);
   });
 });
 
