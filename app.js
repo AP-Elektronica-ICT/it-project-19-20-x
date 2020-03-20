@@ -28,7 +28,7 @@ async function JSON_Data()
 });
 
 // Proxy om data naar mapScript te sturen
-app.get("JSONdata", (request, response) => 
+app.get("/JSONdata", (request, response) => 
 {
   JSON_Data().then(data => 
   {

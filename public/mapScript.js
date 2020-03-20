@@ -7,11 +7,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // for(var k in jsonData) {
 //     console.log(jsonData.features[k].geometry.x);
 // }
-console.log(jsonData.features[0].geometry.X);
-
-L.geoJSON(jsonData,{onEachFeatures: function (feature, layer) {
-    layer.bindPopup(feature.attributes.naam);
-}}).addTo(map);
+//console.log(jsonData.features[0].geometry.X);
 
 async function getJSON_Data()
 {
@@ -21,22 +17,30 @@ async function getJSON_Data()
     return json_Data;
 }
 
+
 getJSON_Data().then(data => 
 {
     const cultuurLocatieData = data[0].features;
     const erfgoodLocatieData = data[1].features;
 
     //Functies om locaties te tonen op roepen
+    cultuurLocaties(cultuurLocatieData);
+    erfgooedLocaties(erfgoodLocatieData);
 })
 
 
 // Toon functies voor locaties zullen hier komen
-function cultuurLocaties()
+function cultuurLocaties(data)
 {
-
+    L.geoJSON(cultuurLocatieData,{onEachFeatures: function (feature, layer) {
+        layer.bindPopup(feature.attributes.naam);
+    }}).addTo(map);
 }
 
-function erfgooedLocaties()
+function erfgooedLocaties(data)
 {
-
+    L.geoJSON(erfgoodLocatieData ,{onEachFeatures: function (feature, layer) {
+        layer.bindPopup(feature.attributes.naam);
+    }}).addTo(map);
 }
+
