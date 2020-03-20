@@ -12,3 +12,28 @@ console.log(jsonData.features[0].geometry.X);
 L.geoJSON(jsonData,{onEachFeatures: function (feature, layer) {
     layer.bindPopup(feature.attributes.naam);
 }}).addTo(map);
+
+async function getJSON_Data()
+{
+    const url ="/JSONdata";
+    const response = await fetch(url);
+    const json_Data = await response.json();
+    return json_Data;
+}
+
+getJSON_Data().then(data => 
+{
+    const cultuurLocatieData = data[0].features;
+    const erfgoodLocatieData = data[1].features;
+
+    //Functies om locaties te tonen op roepen
+})
+
+
+// Toon functies voor locaties zullen hier komen
+function cultuurLocaties()
+{
+
+}
+
+function erfgooedLocaties();
