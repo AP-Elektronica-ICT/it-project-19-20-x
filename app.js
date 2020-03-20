@@ -14,18 +14,15 @@ async function JSON_Data()
 {
   // Cultuurlocaties
   const responseCultuur = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json')
-  const dataCultuur = await responseCultuur.json();
+  let dataCultuur = await responseCultuur.json();
+  dataCultuur = JSON.stringify(dataCultuur)
 
   //Erfgoedlocaties
   const responseErfgoed = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1%3D1&outFields=*&outSR=4326&f=json')
-  const dataErfgoed = await responseErfgoed.json();
-
-  console.log(dataCultuur);
-  console.log(dataErfgoed);
-
+  let dataErfgoed = await responseErfgoed.json();
+  dataErfgoed = JSON.stringify(dataErfgoed)
       app.get('/', (req,res) => {
-        res.render('index', {'jsonData': JSON.stringify(dataCultuur)});
-        res.render('index', {'jsonData': JSON.stringify(dataErfgoed)});
+        res.render('index', {'jsonData': dataCultuur});
 });
 
 // Proxy om data naar mapScript te sturen
@@ -36,6 +33,7 @@ app.get("/JSONdata", (request, response) =>
     response.json(data);
   });
 });
+
 
 }
 app.listen(app.get('port'), () => 

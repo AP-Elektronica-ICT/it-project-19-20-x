@@ -18,11 +18,12 @@ async function getJSON_Data()
 }
 
 
+
 getJSON_Data().then(data => 
 {
     const cultuurLocatieData = data[0].features;
     const erfgoodLocatieData = data[1].features;
-
+    console.log("test");
     //Functies om locaties te tonen op roepen
     Locaties(cultuurLocatieData);
     Locaties(erfgoodLocatieData);
@@ -32,12 +33,10 @@ getJSON_Data().then(data =>
 // Toon functies voor locaties zullen hier komen
 function Locaties(data)
 {
-    const dataLocaties = data;
-    L.geoJSON(dataLocaties,{onEachFeatures: function (feature, layer) {
+    L.geoJSON(cultuurLocatieData,{onEachFeatures: function (feature, layer) {
         layer.bindPopup(feature[0].attributes.naam);
-        L.marker([features[0].geometry.X, features[0].geometry.Y])
+        L.marker([features[0].geometry.x, features[0].geometry.y]);
     }}).addTo(map);
-    
 }
 /*
 function erfgooedLocaties(data)
