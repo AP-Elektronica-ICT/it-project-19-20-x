@@ -17,7 +17,7 @@ header{grid-area: header;}
 main{grid-area: main;}
 footer{grid-area: footer;}
 
-header nav {
+.top {
     display: inline-block;
 }
 
@@ -44,7 +44,7 @@ nav ul li {
 
 
 
-nav {
+.top {
     width: 80%;
     text-align: center;
     font-size: 20px;
