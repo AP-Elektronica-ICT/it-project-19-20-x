@@ -27,17 +27,34 @@
     <link href="https://cdn.antwerpen.be/core_branding_scss/3.0.3/main.min.css" rel="stylesheet" type="text/css">
 
 </head>
-<body>
+<!-- <body> -->
     <header>
         <!-- Logo Antwerpen -->
         <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
-        <nav>
+        <div class="top">
+            <nav>
             <ul>
-                <li><a href=#> <span onclick="CheckNav()">lijst</span></a></li>
+                <li><a href=#> <span onclick="CheckNav()" >lijst</span></a></li>
                 <li><a href= #>contact</a></li>
                 <li><a href= #>over ons</a></li>
             </ul>
-        </nav>
+            </nav>  
+        </div>
+        <!-- Hamburger Menu -->
+        <nav role="navigation">
+            <div id="menuToggle">
+              <input type="checkbox" />
+              <span></span>
+              <span></span>
+              <span></span>
+              
+              <ul id="menu">
+                <li><a href=#> <span onclick="CheckNav()" id="lijst">lijst</span></a></li>
+                <li><a href= #>contact</a></li>
+                <li><a href= #>over ons</a></li>
+              </ul>
+            </div>
+          </nav>
     </header>
     <main>
         <!-- Sidenav -->
@@ -50,16 +67,16 @@
                 <a href="#">Placeholder</a>
                 <a href="#">Placeholder</a>
               </div>
-
         <!-- Map -->
             <div id="map"></div> 
         </div>
     </main>
     <footer>
 
-            <div>
+        <div>
             <span>&copy 2020 Antwerpen.be |</span>
-            <a href="https://www.antwerpen.be/nl/info/5310f241aaa8a74f6c8b458d/a-stad-uw-privacy-en-hoe-gebruiken" target="_blank">Privacy &amp; gebruiksvoorwaarden</a></div>
+            <a href="https://www.antwerpen.be/nl/info/5310f241aaa8a74f6c8b458d/a-stad-uw-privacy-en-hoe-gebruiken" target="_blank">Privacy &amp; gebruiksvoorwaarden</a>
+        </div>
     </footer>
 </body>
 
