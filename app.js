@@ -27,15 +27,15 @@ async function JSON_Data()
       app.get('/', (req,res) => {
         res.render('index', {'jsonData': dataCultuur, 'jsonData2': dataErfgoed});
 
-        return [dataCultuur, dataErfgoed];
+  return [dataCultuur, dataErfgoed];
 });
 
 // Proxy om data naar mapScript te sturen
-app.get("/data", (request, response) => 
+app.get("/JSONdata", (request, response) => 
 {
   JSON_Data().then(data => 
   {
-    response.json(JSON.stringify(data));
+    response.json(data);
     console.log(data);
   });
 });

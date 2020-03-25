@@ -11,7 +11,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 async function getJSON_Data()
 {
-    const url ="/data";
+    const url ="/JSONdata";
     const response = await fetch(url);
     const json_Data = await response.json();
     return json_Data;
