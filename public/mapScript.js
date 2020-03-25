@@ -22,11 +22,11 @@ async function getJSON_Data()
 getJSON_Data().then(data => 
 {
     const cultuurLocatieData = data[0].features;
-    const erfgoodLocatieData = data[1].features;
+  //  const erfgoodLocatieData = data[1].features;
     console.log("test");
     //Functies om locaties te tonen op roepen
     Locaties(cultuurLocatieData);
-    Locaties(erfgoodLocatieData);
+   // Locaties(erfgoodLocatieData);
 })
 
 
