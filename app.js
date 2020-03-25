@@ -24,6 +24,8 @@ async function JSON_Data()
   const responseErfgoed = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1%3D1&outFields=*&outSR=4326&f=json');
   dataErfgoed = await responseErfgoed.json();
   dataErfgoed = JSON.stringify(dataErfgoed);
+
+  return [dataCultuur, dataErfgoed];
 }
 
 app.get('/', (req,res) => {
