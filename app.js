@@ -38,7 +38,7 @@ app.get('/', (req,res) => {
 // Proxy om data naar mapScript te sturen
 app.get("/JSONdata", (request, response) =>
 {
-  JSON_Data().then(data =>
+  JSON_Data().then(dataCultuur =>
   {
     response.json(data);
   });
