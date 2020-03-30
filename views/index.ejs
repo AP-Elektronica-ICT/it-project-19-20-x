@@ -69,6 +69,12 @@
               </div>
         <!-- Map -->
             <div id="map"></div> 
+
+
+        <!-- Locatie gebruiker -->
+        <button onclick="getLocation()">Huidige Locatie</button>
+        <p id="locatie"></p>
+
         </div>
         
         
@@ -84,7 +90,7 @@
 
 
 <script>
-
+ // Functie om navigatie te sluiten en open doen, door op Lijst te klikken
 function CheckNav()
 {
     navSize = document.getElementById("mySidenav").style.width;
@@ -104,6 +110,24 @@ function closeNav() {
 
   document.getElementById("mySidenav").style.width = "0";
 }
+//Locatie gebruiker detecteren
+var x = document.getElementById("locatie");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocatie wordt niet ondersteund door de browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+  L.marker([position.coords.longitude,position.coords.latitude],{icon: greenIcon}).addTo(map);
+}
+
+
 </script>
 
 <!--  JSON Data inladen 

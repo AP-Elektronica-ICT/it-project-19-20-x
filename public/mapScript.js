@@ -37,6 +37,7 @@ var Icon = L.icon({
     }//myLayer.bindPopup(feature.attributes.naam);
       
   }
+
  
  
   
