@@ -48,9 +48,8 @@ var Icon = L.icon({
     }
   }
   
-  function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
+  function showPosition(position) 
+  {
     console.log(position.coords.longitude, position.coords.latitude);
     L.marker([position.coords.latitude,position.coords.longitude],{icon: Icon}).addTo(map);
   }
