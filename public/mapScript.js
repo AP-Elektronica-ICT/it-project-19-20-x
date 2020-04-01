@@ -38,7 +38,21 @@ var Icon = L.icon({
       
   }
 
- 
+  let x = document.getElementById("locatie");
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      x.innerHTML = "Geolocatie wordt niet ondersteund door de browser.";
+    }
+  }
+  
+  function showPosition(position) 
+  {
+    console.log(position.coords.longitude, position.coords.latitude);
+    L.marker([position.coords.latitude,position.coords.longitude],{icon: Icon}).addTo(map);
+  }
  
   
   getJSON_Data().then(data => 

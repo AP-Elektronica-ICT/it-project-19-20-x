@@ -72,7 +72,7 @@
 
 
         <!-- Locatie gebruiker -->
-        <button onclick="getLocation()">Huidige Locatie</button>
+       <button onclick="getLocation()">Huidige Locatie</button>
         <p id="locatie"></p>
 
         </div>
@@ -111,27 +111,13 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 //Locatie gebruiker detecteren
-var x = document.getElementById("locatie");
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocatie wordt niet ondersteund door de browser.";
-  }
-}
-
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-  L.marker([position.coords.longitude,position.coords.latitude],{icon: greenIcon}).addTo(map);
-}
 
 
 </script>
 
-<!--  JSON Data inladen 
+<!--  JSON Data inladen -->
 <script>let jsonData = "<%= jsonData %>";</script>
 <script src="/mapScript.js" defer></script>
--->
+
 </html>
