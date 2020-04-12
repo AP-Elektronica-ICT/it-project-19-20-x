@@ -35,7 +35,20 @@ var Icon = L.icon({
          const lat = json_Data.features[index].geometry.x;
        const marker = L.marker([long,lat],{icon: greenIcon}).addTo(map);
        marker.bindPopup("<br>" + json_Data.features[index].attributes.gemeente + "<br>" +  "<b>" + json_Data.features[index].attributes.naam + "</b>" + "<br>" + json_Data.features[index].attributes.straat + " " + json_Data.features[index].attributes.huisnr + "<br>" + json_Data.features[index].attributes.postcode)
-    }//myLayer.bindPopup(feature.attributes.naam);
+    }
+
+    const erfUrl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+
+       const res = await fetch(erfUrl);
+       const json = await res.json();
+
+       for(let index = 0; index < json.features.length; index++)
+       {
+          const corLong= json.features[index].geometry.y;
+          const corLat = json.features[index].geometry.x;
+          const marker = L.marker([corLong,corLat], {icon: Icon}).addTo(map);
+          marker.bindPopup("<br>" + json_Data.features[index].attributes.gemeente + "<br>" +  "<b>" + json_Data.features[index].attributes.naam + "</b>" + "<br>" + json_Data.features[index].attributes.straat + " " + json_Data.features[index].attributes.huisnr + "<br>" + json_Data.features[index].attributes.postcode)
+       }
       
   }
 
