@@ -47,7 +47,7 @@ var Icon = L.icon({
           const corLong= json.features[index].geometry.y;
           const corLat = json.features[index].geometry.x;
           const marker = L.marker([corLong,corLat], {icon: Icon}).addTo(map);
-          marker.bindPopup("<br>" + json_Data.features[index].attributes.gemeente + "<br>" +  "<b>" + json_Data.features[index].attributes.naam + "</b>" + "<br>" + json_Data.features[index].attributes.straat + " " + json_Data.features[index].attributes.huisnr + "<br>" + json_Data.features[index].attributes.postcode)
+          marker.bindPopup("<br>" + json.features[index].attributes.gemeente + "<br>" +  "<b>" + json.features[index].attributes.naam + "</b>" + "<br>" + json.features[index].attributes.straat + " " + json.features[index].attributes.huisnr + "<br>" + json.features[index].attributes.postcode)
        }
       
   }
