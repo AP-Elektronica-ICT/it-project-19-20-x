@@ -22,7 +22,7 @@ var Icon = L.icon({
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
 });
 
-
+// maakt de route
 L.Routing.control({
     waypoints: [
         L.latLng(51.13, 4.25),
