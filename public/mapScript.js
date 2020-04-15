@@ -22,6 +22,16 @@ var Icon = L.icon({
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
 });
 
+
+L.Routing.control({
+    waypoints: [
+        L.latLng(51.13, 4.25),
+        L.latLng(51.230444, 4.415316)
+    ],
+    routeWhileDragging: true,
+    router: L.Routing.graphHopper('b314e5a1-08b9-400a-9cce-9f2976229a8a')
+}).addTo(map);
+
   async function getJSON_Data()
   {
 
