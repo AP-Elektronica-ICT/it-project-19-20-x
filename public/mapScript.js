@@ -78,7 +78,26 @@ L.Routing.control({
     L.marker([position.coords.latitude,position.coords.longitude],{icon: Icon}).addTo(map);
   }
  
-  
+  function getRoute(long, lat) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showRoute);
+    } else { 
+      x.innerHTML = "Geolocatie wordt niet ondersteund door de browser.";
+    }
+  }
+
+  function showRoute(position, long, lat) {
+      // maakt de route
+      L.Routing.control({
+          waypoints: [
+              L.latLng(position.coords.latitude, position.coords.longitude),
+              L.latLng(50.85045, 4.34878)
+          ],
+          routeWhileDragging: true,
+          router: L.Routing.graphHopper('b314e5a1-08b9-400a-9cce-9f2976229a8a')
+      }).addTo(map);
+  }
+    
   getJSON_Data().then(data => 
     {
         const cultuurLocatieData = data[0].features;
