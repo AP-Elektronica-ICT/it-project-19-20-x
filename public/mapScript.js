@@ -74,8 +74,11 @@ var Icon = L.icon({
   }
 
   function showRoute(position, destlong, destlat) {
+    if (typeof routeControl !== 'undefined') {
+      routeControl.getPlan().setWaypoints([]);
+    }
       // maakt de route
-      L.Routing.control({
+      routeControl = L.Routing.control({
           waypoints: [
               L.latLng(position.coords.latitude, position.coords.longitude),
               L.latLng(destlong, destlat)
