@@ -63,22 +63,22 @@ var Icon = L.icon({
     L.marker([position.coords.latitude,position.coords.longitude],{icon: Icon}).addTo(map);
   }
  
-  function getRoute(long, lat) {
+  function getRoute(destlong, destlat) {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        self.showRoute(position, long, lat);
-    }, this.noloc, { timeout : 3});
+      navigator.geolocation.getCurrentPosition(function (position) {
+        showRoute(position, destlong, destlat);
+    });
     } else { 
       x.innerHTML = "Geolocatie wordt niet ondersteund door de browser.";
     }
   }
 
-  function showRoute(position, long, lat) {
+  function showRoute(position, destlong, destlat) {
       // maakt de route
       L.Routing.control({
           waypoints: [
               L.latLng(position.coords.latitude, position.coords.longitude),
-              L.latLng(lat, long)
+              L.latLng(destlong, destlat)
           ],
           routeWhileDragging: true,
           router: L.Routing.graphHopper('b314e5a1-08b9-400a-9cce-9f2976229a8a')
