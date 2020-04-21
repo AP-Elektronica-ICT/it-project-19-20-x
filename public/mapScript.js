@@ -67,7 +67,7 @@ getjson();
     console.log(position.coords.longitude, position.coords.latitude);
     L.marker([position.coords.latitude,position.coords.longitude],{icon: Icon}).addTo(map);
   }
- 
+  
   function getRoute(destlong, destlat) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
