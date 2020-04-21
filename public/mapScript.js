@@ -44,6 +44,7 @@ for(let index=0; index< culjson.features.length; index++){
   marker.bindPopup("<br>" + culjson.features[index].attributes.gemeente + "<br>" +  "<b>" + culjson.features[index].attributes.naam + "</b>" + "<br>" + culjson.features[index].attributes.straat + " " + culjson.features[index].attributes.huisnr + "<br>" + culjson.features[index].attributes.postcode  + "<br>"  + `<button onclick="getRoute(${cullong}, ${cullat})">Route</button>`)
 }
 }
+
 getjson();
 
 
@@ -88,15 +89,7 @@ getjson();
       }).addTo(map);
   }
 
-  getJSON_Data().then(data => 
-    {
-        const cultuurLocatieData = data[0].features;
-        const erfgoodLocatieData = data[1].features;
-        console.log("test");
-        //Functies om locaties te tonen op roepen
-        Locaties(cultuurLocatieData);
-        Locaties(erfgoodLocatieData);
-    })
+
   
  
   
