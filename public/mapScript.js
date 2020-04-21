@@ -17,35 +17,40 @@ var Icon = L.icon({
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
 });
 
-  async function getJSON_Data()
-  {
 
-      const url = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json";
-      
+async function getjson(){
 
-      const response = await fetch(url);
-      const json_Data = await response.json();
-      for (let index = 0; index < json_Data.features.length; index++) {
-         const long = json_Data.features[index].geometry.y;
-         const lat = json_Data.features[index].geometry.x;
-       const marker = L.marker([long,lat],{icon: greenIcon}).addTo(map);
-       marker.bindPopup("<br>" + json_Data.features[index].attributes.gemeente + "<br>" +  "<b>" + json_Data.features[index].attributes.naam + "</b>" + "<br>" + json_Data.features[index].attributes.straat + " " + json_Data.features[index].attributes.huisnr + "<br>" + json_Data.features[index].attributes.postcode + `<br> <button onclick="getRoute(${long}, ${lat})">Route</button>`)
-    }
+//erfgoed locaties
+const erfurl = '/jsonerfgoed';
+const response = await fetch(erfurl);
+const erfjson = await response.json();
+for(let index=0; index< erfjson.features.length; index++){
 
-    const erfUrl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+  const erflong = erfjson.features[index].geometry.y;
+  const erflat = erfjson.features[index].geometry.x;
+  const marker = L.marker([erflong,erflat],{icon: Icon}).addTo(map);
+  marker.bindPopup("<br>" + erfjson.features[index].attributes.gemeente + "<br>" +  "<b>" + erfjson.features[index].attributes.naam + "</b>" + "<br>" + erfjson.features[index].attributes.straat + " " + erfjson.features[index].attributes.huisnr + "<br>" + erfjson.features[index].attributes.postcode)
+}
 
-       const res = await fetch(erfUrl);
-       const json = await res.json();
+//cultuurlocaties
+const culurl = '/jsoncultuur';
+const res = await fetch(culurl);
+const culjson = await res.json();
+for(let index=0; index< culjson.features.length; index++){
 
-       for(let index = 0; index < json.features.length; index++)
-       {
-          const corLong= json.features[index].geometry.y;
-          const corLat = json.features[index].geometry.x;
-          const marker = L.marker([corLong,corLat], {icon: Icon}).addTo(map);
-          marker.bindPopup("<br>" + json.features[index].attributes.gemeente + "<br>" +  "<b>" + json.features[index].attributes.naam + "</b>" + "<br>" + json.features[index].attributes.straat + " " + json.features[index].attributes.huisnr + "<br>" + json.features[index].attributes.postcode + `<br> <button onclick="getRoute(${corLong}, ${corLat})">Route</button>`)
-       }
-      
-  }
+  const cullong = culjson.features[index].geometry.y;
+  const cullat = culjson.features[index].geometry.x;
+  const marker = L.marker([cullong,cullat],{icon: greenIcon}).addTo(map);
+  marker.bindPopup("<br>" + culjson.features[index].attributes.gemeente + "<br>" +  "<b>" + culjson.features[index].attributes.naam + "</b>" + "<br>" + culjson.features[index].attributes.straat + " " + culjson.features[index].attributes.huisnr + "<br>" + culjson.features[index].attributes.postcode)
+}
+}
+getjson();
+
+
+
+
+
+
 
   let x = document.getElementById("locatie");
 
