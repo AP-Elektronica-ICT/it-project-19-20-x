@@ -29,7 +29,7 @@ for(let index=0; index< erfjson.features.length; index++){
   const erflong = erfjson.features[index].geometry.y;
   const erflat = erfjson.features[index].geometry.x;
   const marker = L.marker([erflong,erflat],{icon: Icon}).addTo(map);
-  marker.bindPopup("<br>" + erfjson.features[index].attributes.gemeente + "<br>" +  "<b>" + erfjson.features[index].attributes.naam + "</b>" + "<br>" + erfjson.features[index].attributes.straat + " " + erfjson.features[index].attributes.huisnr + "<br>" + erfjson.features[index].attributes.postcode)
+  marker.bindPopup("<br>" + erfjson.features[index].attributes.gemeente + "<br>" +  "<b>" + erfjson.features[index].attributes.naam + "</b>" + "<br>" + erfjson.features[index].attributes.straat + " " + erfjson.features[index].attributes.huisnr + "<br>" + erfjson.features[index].attributes.postcode  + "<br>" + `<button onclick="getRoute(${erflong}, ${erflat})">Route</button>`)
 }
 
 //cultuurlocaties
@@ -41,7 +41,7 @@ for(let index=0; index< culjson.features.length; index++){
   const cullong = culjson.features[index].geometry.y;
   const cullat = culjson.features[index].geometry.x;
   const marker = L.marker([cullong,cullat],{icon: greenIcon}).addTo(map);
-  marker.bindPopup("<br>" + culjson.features[index].attributes.gemeente + "<br>" +  "<b>" + culjson.features[index].attributes.naam + "</b>" + "<br>" + culjson.features[index].attributes.straat + " " + culjson.features[index].attributes.huisnr + "<br>" + culjson.features[index].attributes.postcode)
+  marker.bindPopup("<br>" + culjson.features[index].attributes.gemeente + "<br>" +  "<b>" + culjson.features[index].attributes.naam + "</b>" + "<br>" + culjson.features[index].attributes.straat + " " + culjson.features[index].attributes.huisnr + "<br>" + culjson.features[index].attributes.postcode  + "<br>"  + `<button onclick="getRoute(${cullong}, ${cullat})">Route</button>`)
 }
 }
 getjson();
@@ -67,7 +67,7 @@ getjson();
     console.log(position.coords.longitude, position.coords.latitude);
     L.marker([position.coords.latitude,position.coords.longitude],{icon: Icon}).addTo(map);
   }
- 
+  
   function getRoute(destlong, destlat) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
