@@ -47,11 +47,6 @@ for(let index=0; index< culjson.features.length; index++){
 getjson();
 
 
-
-
-
-
-
   let x = document.getElementById("locatie");
 
   function getLocation() {

@@ -35,7 +35,7 @@
 <!-- <body> -->
     <header>
         <!-- Logo Antwerpen -->
-        <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
+        <a href = "/"><img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen"></a>
         <div class="top">
             <nav>
             <ul>
@@ -64,27 +64,22 @@
           </nav>
     </header>
     <main>
-        <!-- Sidenav -->
-        <div id="sidenav">
-            <!-- <span onclick="openNav()">open</span> -->
-            <div id="mySidenav" class="sidenav">
-                <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
-                <a href="#">Placeholder</a>
-                <a href="#">Placeholder</a>
-                <a href="#">Placeholder</a>
-                <a href="#">Placeholder</a>
-              </div>
-        <!-- Map -->
-            <div id="map"></div> 
-
-
-        <!-- Locatie gebruiker -->
-       <button onclick="getLocation()">Huidige Locatie</button>
-        <p id="locatie"></p>
-
-        </div>
-        
-        
+        <div class="container">
+            <form>
+          
+              <label for="fname">Voornaam</label>
+              <input type="text" id="fname" name="firstname" placeholder="Voornaam..">
+          
+              <label for="lname">Naam</label>
+              <input type="text" id="lname" name="lastname" placeholder="Naam..">
+          
+              <label for="subject">Bericht</label>
+              <textarea id="subject" name="subject" placeholder="Bericht.." style="height:200px"></textarea>
+          
+              <input type="submit" value="Submit">
+          
+            </form>
+          </div>
     </main>
     <footer>
 
@@ -94,37 +89,5 @@
         </div>
     </footer>
 </body>
-
-
-<script>
- // Functie om navigatie te sluiten en open doen, door op Lijst te klikken
-function CheckNav()
-{
-    navSize = document.getElementById("mySidenav").style.width;
-    console.log(navSize)
-    if (navSize == "250px") {
-        return closeNav();
-    }
-    return openNav();
-}
-
-function openNav() 
-{
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-
-  document.getElementById("mySidenav").style.width = "0";
-}
-//Locatie gebruiker detecteren
-
-
-
-</script>
-
-<!--  JSON Data inladen -->
-<script>let jsonData = "<%= jsonData %>";</script>
-<script src="/mapScript.js" defer></script>
 
 </html>

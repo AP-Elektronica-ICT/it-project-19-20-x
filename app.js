@@ -35,6 +35,11 @@ app.get('/', (req,res) => {
 
 });
 
+app.get('/contact', (req,res) => 
+{
+  res.render('contact')
+});
+
 
 
 
