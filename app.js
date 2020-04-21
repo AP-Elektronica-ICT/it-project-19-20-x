@@ -35,6 +35,43 @@ app.get('/', (req,res) => {
 
 });
 
+
+
+
+
+
+//erfgoed data
+app.get('/jsonerfgoed', async (req,res) => {
+const erfUrl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1=1&outFields=*&outSR=4326&f=json";
+const fetchResponse = await fetch(erfUrl);
+const json = await fetchResponse.json();
+res.json(json);
+
+});
+
+//cultuur data
+app.get('/jsoncultuur', async (req,res) => {
+  const url = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+  const response = await fetch(url);
+  const json = await response.json();
+  res.json(json);
+  
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Proxy om data naar mapScript te sturen
 app.get("/JSONdata", (request, response) =>
 {
