@@ -4,11 +4,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
 }).addTo(map);
 
-
-  // for(var k in jsonData) {
-  //     console.log(jsonData.features[k].geometry.x);
-  // }
-  //console.log(jsonData.features[0].geometry.X);
   var greenIcon = L.icon({
     iconUrl: 'icon.png',
     iconSize:     [32, 32], // size of the icon
@@ -21,11 +16,6 @@ var Icon = L.icon({
     iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
 });
-
-
-
-
-
 
 
 async function getjson(){
@@ -78,7 +68,31 @@ getjson();
     L.marker([position.coords.latitude,position.coords.longitude],{icon: Icon}).addTo(map);
   }
  
-  
+  function getRoute(destlong, destlat) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        showRoute(position, destlong, destlat);
+    });
+    } else { 
+      x.innerHTML = "Geolocatie wordt niet ondersteund door de browser.";
+    }
+  }
+
+  function showRoute(position, destlong, destlat) {
+    if (typeof routeControl !== 'undefined') {
+      routeControl.getPlan().setWaypoints([]);
+    }
+      // maakt de route
+      routeControl = L.Routing.control({
+          waypoints: [
+              L.latLng(position.coords.latitude, position.coords.longitude),
+              L.latLng(destlong, destlat)
+          ],
+          routeWhileDragging: true,
+          router: L.Routing.graphHopper('b314e5a1-08b9-400a-9cce-9f2976229a8a')
+      }).addTo(map);
+  }
+
   getJSON_Data().then(data => 
     {
         const cultuurLocatieData = data[0].features;
