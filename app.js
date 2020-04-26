@@ -13,13 +13,33 @@ app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
-
-app.get('/', (req,res) => {
-  res.render('index', {'jsonData': dataCultuur, 'jsonData2': dataErfgoed})
-
-      //return [dataCultuur, dataErfgoed];
-
+async function JSON_Data()
+{
+  // Cultuurlocaties
+const responeCultuur = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json')
+.then((response) => {
+  return response.json();
+})
+.then((data) => {
+  dataCultuur = JSON.stringify(data);
+  app.get('/', (req,res) => {
+    res.render('index', {'jsonData': data})
+    });
 });
+
+//Erfgoedlocaties
+const responeErfgoed = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1%3D1&outFields=*&outSR=4326&f=json')
+.then((response) => {
+  return response.json();
+})
+.then((data) => {
+  dataErfgoed = JSON.stringify(data);
+  app.get('/', (req,res) => {
+    res.render('index', {'jsonData': data})
+    });
+});
+}
+
 
 app.get('/contact', (req,res) => 
 {
@@ -32,7 +52,6 @@ const erfUrl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/po
 const fetchResponse = await fetch(erfUrl);
 const json = await fetchResponse.json();
 res.json(json);
-
 });
 
 //cultuur data
@@ -41,39 +60,14 @@ app.get('/jsoncultuur', async (req,res) => {
   const response = await fetch(url);
   const json = await response.json();
   res.json(json);
-  
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Proxy om data naar mapScript te sturen
-app.get("/JSONdata", (request, response) =>
-{
-  JSON_Data().then(dataCultuur =>
-  {
-    response.json(data);
-  });
-});
-
 
 
 app.listen(app.get('port'), () =>
 {
   console.log(`Express Started on http://localhost:${
     app.get('port')}; press Ctrl-c to terminate.`);
-
+    JSON_Data()
 });
 
 

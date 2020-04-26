@@ -32,7 +32,7 @@
     <link href="https://cdn.antwerpen.be/core_branding_scss/3.0.3/main.min.css" rel="stylesheet" type="text/css">
 
 </head>
-<!-- <body> -->
+  <body onload = getjson()>
     <header>
         <!-- Logo Antwerpen -->
         <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
@@ -40,7 +40,7 @@
             <nav>
             <ul>
                 <li><a href= '/'>Map</a></li>
-                <li><a href=#><span onclick="CheckNav()"    >Lijst</span></a></li>
+                <li><a href=#><span onclick="CheckNav()">Lijst</span></a></li>
                 <li><a href='/contact'>Contact</a></li>
                 <li><a href= #>Over ons</a></li>
             </ul>
@@ -69,10 +69,10 @@
             <!-- <span onclick="openNav()">open</span> -->
             <div id="mySidenav" class="sidenav">
                 <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
-                <a href="#">Placeholder</a>
-                <a href="#">Placeholder</a>
-                <a href="#">Placeholder</a>
-                <a href="#">Placeholder</a>
+                <% for(let index=0; index < jsonData.features.length; index++) { %>
+                    <li> <%= jsonData.features[index].attributes.naam %></li>
+             <% } %>
+                
               </div>
         <!-- Map -->
             <div id="map"></div> 
@@ -117,7 +117,7 @@ function closeNav() {
 
   document.getElementById("mySidenav").style.width = "0";
 }
-//Locatie gebruiker detecteren
+
 
 
 
@@ -126,5 +126,6 @@ function closeNav() {
 <!--  JSON Data inladen -->
 <script>let jsonData = "<%= jsonData %>";</script>
 <script src="/mapScript.js" defer></script>
+
 
 </html>
