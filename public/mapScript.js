@@ -47,22 +47,6 @@ for(let index=0; index< culjson.features.length; index++){
 
 getjson();
 
-<<<<<<< HEAD
-      const response = await fetch(url);
-      const json_Data = await response.json();
-      for (let index = 0; index < json_Data.features.length; index++) {
-         const long = json_Data.features[index].geometry.y;
-         const lat = json_Data.features[index].geometry.x;
-       const marker = L.marker([long,lat],{icon: greenIcon}).addTo(map);
-    }//myLayer.bindPopup(feature.attributes.naam);
-      
-<<<<<<< HEAD
-  }
- 
-=======
-  }
-=======
->>>>>>> aa5b7373852cea623914229b394a42cc62be2ccb
 
   let x = document.getElementById("locatie");
 
@@ -79,11 +63,6 @@ getjson();
     console.log(position.coords.longitude, position.coords.latitude);
     L.marker([position.coords.latitude,position.coords.longitude],{icon: Icon}).addTo(map);
   }
-<<<<<<< HEAD
->>>>>>> b3a03d2e0745e2c0cc422f10f524ebfe67d1c833
- 
-=======
->>>>>>> aa5b7373852cea623914229b394a42cc62be2ccb
   
   function getRoute(destlong, destlat) {
     if (navigator.geolocation) {
