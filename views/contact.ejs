@@ -32,15 +32,15 @@
     <link href="https://cdn.antwerpen.be/core_branding_scss/3.0.3/main.min.css" rel="stylesheet" type="text/css">
 
 </head>
-  <body onload = getjson()>
+<!-- <body> -->
     <header>
         <!-- Logo Antwerpen -->
-        <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
+        <a href = "/"><img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen"></a>
         <div class="top">
             <nav>
             <ul>
                 <li><a href= '/'>Map</a></li>
-                <li><a href=#><span onclick="CheckNav()">Lijst</span></a></li>
+                <li><a href=#> <span onclick="CheckNav()" ></span>Lijst</span></a></li>
                 <li><a href='/contact'>Contact</a></li>
                 <li><a href= #>Over ons</a></li>
             </ul>
@@ -56,7 +56,7 @@
               
               <ul id="menu">
                 <li><a href= '/'>Map</a></li>
-                <li><a href=#><span onclick="CheckNav()" id="lijst">Lijst</span></a></li>
+                <li><a href=#> <span onclick="CheckNav()" id="lijst">Lijst</span></a></li>
                 <li><a href='/contact'>Contact</a></li>
                 <li><a href= #>Over ons</a></li>
               </ul>
@@ -64,27 +64,22 @@
           </nav>
     </header>
     <main>
-        <!-- Sidenav -->
-        <div id="sidenav">
-            <!-- <span onclick="openNav()">open</span> -->
-            <div id="mySidenav" class="sidenav">
-                <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
-                <% for(let index=0; index < jsonData.features.length; index++) { %>
-                    <li> <%= jsonData.features[index].attributes.naam %></li>
-             <% } %>
-                
-              </div>
-        <!-- Map -->
-            <div id="map"></div> 
-
-
-        <!-- Locatie gebruiker -->
-       <button onclick="getLocation()">Huidige Locatie</button>
-        <p id="locatie"></p>
-
-        </div>
-        
-        
+        <div class="container">
+            <form>
+          
+              <label for="fname">Voornaam</label>
+              <input type="text" id="fname" name="firstname" placeholder="Voornaam..">
+          
+              <label for="lname">Naam</label>
+              <input type="text" id="lname" name="lastname" placeholder="Naam..">
+          
+              <label for="subject">Bericht</label>
+              <textarea id="subject" name="subject" placeholder="Bericht.." style="height:200px"></textarea>
+          
+              <input type="submit" value="Submit">
+          
+            </form>
+          </div>
     </main>
     <footer>
 
@@ -94,38 +89,5 @@
         </div>
     </footer>
 </body>
-
-
-<script>
- // Functie om navigatie te sluiten en open doen, door op Lijst te klikken
-function CheckNav()
-{
-    navSize = document.getElementById("mySidenav").style.width;
-    console.log(navSize)
-    if (navSize == "250px") {
-        return closeNav();
-    }
-    return openNav();
-}
-
-function openNav() 
-{
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-
-  document.getElementById("mySidenav").style.width = "0";
-}
-
-
-
-
-</script>
-
-<!--  JSON Data inladen -->
-<script>let jsonData = "<%= jsonData %>";</script>
-<script src="/mapScript.js" defer></script>
-
 
 </html>
