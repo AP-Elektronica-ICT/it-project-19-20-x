@@ -69,6 +69,12 @@
               </div>
         <!-- Map -->
             <div id="map"></div> 
+
+
+        <!-- Locatie gebruiker -->
+       <button onclick="getLocation()">Huidige Locatie</button>
+        <p id="locatie"></p>
+
         </div>
         
         
@@ -84,7 +90,7 @@
 
 
 <script>
-
+ // Functie om navigatie te sluiten en open doen, door op Lijst te klikken
 function CheckNav()
 {
     navSize = document.getElementById("mySidenav").style.width;
@@ -104,10 +110,14 @@ function closeNav() {
 
   document.getElementById("mySidenav").style.width = "0";
 }
+//Locatie gebruiker detecteren
+
+
+
 </script>
 
-<!--  JSON Data inladen 
+<!--  JSON Data inladen -->
 <script>let jsonData = "<%= jsonData %>";</script>
 <script src="/mapScript.js" defer></script>
--->
+
 </html>

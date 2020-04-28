@@ -36,8 +36,28 @@ var Icon = L.icon({
        const marker = L.marker([long,lat],{icon: greenIcon}).addTo(map);
     }//myLayer.bindPopup(feature.attributes.naam);
       
+<<<<<<< HEAD
   }
  
+=======
+  }
+
+  let x = document.getElementById("locatie");
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      x.innerHTML = "Geolocatie wordt niet ondersteund door de browser.";
+    }
+  }
+  
+  function showPosition(position) 
+  {
+    console.log(position.coords.longitude, position.coords.latitude);
+    L.marker([position.coords.latitude,position.coords.longitude],{icon: Icon}).addTo(map);
+  }
+>>>>>>> b3a03d2e0745e2c0cc422f10f524ebfe67d1c833
  
   
   getJSON_Data().then(data => 
@@ -62,4 +82,3 @@ var Icon = L.icon({
       }}).addTo(map);
   }
   */
-  
