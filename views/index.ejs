@@ -69,9 +69,9 @@
             <!-- <span onclick="openNav()">open</span> -->
             <div id="mySidenav" class="sidenav">
                 <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
-                <% for(let index=0; index < jsonData.features.length; index++) { %>
+                <!-- <% for(let index=0; index < jsonData.features.length; index++) { %>
                     <li> <%= jsonData.features[index].attributes.naam %></li>
-             <% } %>
+             <% } %> -->
                 
               </div>
         <!-- Map -->
@@ -88,7 +88,7 @@
     </main>
     <footer>
 
-        <div>
+        <div class="footer">
             <span>&copy 2020 Antwerpen.be |</span>
             <a href="https://www.antwerpen.be/nl/info/5310f241aaa8a74f6c8b458d/a-stad-uw-privacy-en-hoe-gebruiken" target="_blank">Privacy &amp; gebruiksvoorwaarden</a>
         </div>
@@ -124,7 +124,7 @@ function closeNav() {
 </script>
 
 <!--  JSON Data inladen -->
-<script>let jsodnData = "<%= jsonData %>";</script>
+<script> // let jsodnData = "<%= jsonData %>";</script>
 <script src="/mapScript.js" defer></script>
 
 
