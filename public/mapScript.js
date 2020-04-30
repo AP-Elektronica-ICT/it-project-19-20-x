@@ -24,12 +24,30 @@ async function getjson(){
 const erfurl = '/jsonerfgoed';
 const response = await fetch(erfurl);
 const erfjson = await response.json();
+//markers
 for(let index=0; index< erfjson.features.length; index++){
 
   const erflong = erfjson.features[index].geometry.y;
   const erflat = erfjson.features[index].geometry.x;
   const marker = L.marker([erflong,erflat],{icon: Icon}).addTo(map);
   marker.bindPopup("<br>" + erfjson.features[index].attributes.gemeente + "<br>" +  "<b>" + erfjson.features[index].attributes.naam + "</b>" + "<br>" + erfjson.features[index].attributes.straat + " " + erfjson.features[index].attributes.huisnr + "<br>" + erfjson.features[index].attributes.postcode  + "<br>" + `<button onclick="getRoute(${erflong}, ${erflat})">Route</button>`)
+}
+//lijst
+let list = document.getElementById("listSidenav");
+
+for(let index=0; index< erfjson.features.length; index++){
+  const erflong = erfjson.features[index].geometry.y;
+  const erflat = erfjson.features[index].geometry.x;
+let listItem = document.createElement("li");
+let itemList = document.createElement("ul");
+let itemTitel = document.createElement("li");
+let itemContent =  document.createElement("li");
+itemTitel.innerHTML = "<b>" + erfjson.features[index].attributes.naam + "</b>";
+itemContent.innerHTML = "<br>" + erfjson.features[index].attributes.gemeente + "<br>" + erfjson.features[index].attributes.straat + " " + erfjson.features[index].attributes.huisnr + "<br>" + erfjson.features[index].attributes.postcode  + "<br>" + `<button onclick="getRoute(${erflong}, ${erflat})">Route</button>`
+itemList.appendChild(itemTitel);
+itemList.appendChild(itemContent);
+listItem.appendChild(itemList);
+list.appendChild(listItem);
 }
 
 //cultuurlocaties

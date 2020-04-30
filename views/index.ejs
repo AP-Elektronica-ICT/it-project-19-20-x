@@ -67,12 +67,15 @@
         <!-- Sidenav -->
         <div id="sidenav">
             <!-- <span onclick="openNav()">open</span> -->
+            <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
             <div id="mySidenav" class="sidenav">
-                <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
-                <% for(let index=0; index < jsonData.features.length; index++) { %>
-                    <li> <%= jsonData.features[index].attributes.naam %></li>
-             <% } %>
-                
+                <table>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+             <ul id="listSidenav"></ul>
               </div>
         <!-- Map -->
             <div id="map"></div> 
@@ -102,7 +105,7 @@ function CheckNav()
 {
     navSize = document.getElementById("mySidenav").style.width;
     console.log(navSize)
-    if (navSize == "250px") {
+    if (navSize == "40%") {
         return closeNav();
     }
     return openNav();
@@ -110,7 +113,7 @@ function CheckNav()
 
 function openNav() 
 {
-  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("mySidenav").style.width = "40%";
 }
 
 function closeNav() {
