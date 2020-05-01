@@ -1,5 +1,4 @@
 var map = L.map('map').setView([51.2171918, 4.4212529], 10);
-var markerGroup = L.layerGroup().addTo(map);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
@@ -18,14 +17,16 @@ var Icon = L.icon({
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
 });
 
-async function getjson(){
+async function getjson(e){
+  e.preventDefault();
   //erfgoed locaties
   const erfurl = '/jsonerfgoed';
   const response = await fetch(erfurl);
   const erfjson = await response.json();
   let list = document.getElementById("listSidenav");
   let filterData = new FormData(document.getElementById("filterForm"));
-  // markerGroup.clearLayers();
+  var markerGroup = L.layerGroup().addTo(map);
+  markerGroup.clearLayers();
 
   for(let index=0; index< erfjson.features.length; index++){
     console.log();
@@ -87,7 +88,7 @@ async function getjson(){
   }
 }
 
-getjson();
+document.addEventListener('load', getjson);
 document.getElementById("filterForm").addEventListener("submit", getjson);
 
 
