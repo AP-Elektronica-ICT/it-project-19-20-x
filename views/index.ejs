@@ -70,7 +70,34 @@
             <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
             <div id="mySidenav" class="sidenav">
                 <form id="filterForm" action="" method="get">
-                    
+                    <select name="Categorieën">
+                        <option value="all">all</option>
+                        <option value="Museum">Museum</option>
+                        <option value="Archief">Archief</option>
+                        <option value="Erfgoedbibliotheek">Erfgoedbibliotheek</option>
+                        <option value="Erfgoedvereniging">Erfgoedvereniging</option>
+                        <option value="Documentatiecentrum">Documentatiecentrum</option>
+                        <option value="Levensbeschouwelijk erfgoed">Levensbeschouwelijk erfgoed</option>
+                        <option value="Museumdepot">Museumdepot</option>
+                        <option value="Cultuurcentrum">Cultuurcentrum</option>
+                    </select>
+                    <!-- <select name="Type">
+                        <option value="Overdekt">Overdekt</option>
+                        <option value="Openlucht">Openlucht</option>
+                        <option value="Openbaar domein">Openbaar domein</option>
+                    </select> -->
+                    <select name="postcodes">
+                        <option value="all">all</option>
+                        <option value="2000">2000</option>
+                        <option value="2020">2020</option>
+                        <option value="2030">2030</option>
+                        <option value="2040">2040</option>
+                        <option value="2050">2050</option>
+                        <option value="2060">2060</option>
+                        <option value="2018">2018</option>
+                    </select>
+                    <input type="text" name="straatnaam">
+                    <input type="submit" value="Filter">
                 </form>
              <ul id="listSidenav"></ul>
               </div>
