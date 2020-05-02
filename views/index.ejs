@@ -61,34 +61,6 @@
     <%- include('partials/footer') %>
 </body>
 
-
-<script>
- // Functie om navigatie te sluiten en open doen, door op Lijst te klikken
-function CheckNav()
-{
-    navSize = document.getElementById("mySidenav").style.width;
-    console.log(navSize)
-    if (navSize == "40%") {
-        return closeNav();
-    }
-    return openNav();
-}
-
-function openNav() 
-{
-  document.getElementById("mySidenav").style.width = "40%";
-}
-
-function closeNav() {
-
-  document.getElementById("mySidenav").style.width = "0";
-}
-
-
-
-
-</script>
-
 <!--  JSON Data inladen -->
 <script>let jsodnData = "<%= jsonData %>";</script>
 <script src="/mapScript.js" defer></script>
