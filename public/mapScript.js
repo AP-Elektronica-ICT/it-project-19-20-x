@@ -43,9 +43,39 @@ for(let index=0; index< culjson.features.length; index++){
   const marker = L.marker([cullong,cullat],{icon: greenIcon}).addTo(map);
   marker.bindPopup("<br>" + culjson.features[index].attributes.gemeente + "<br>" +  "<b>" + culjson.features[index].attributes.naam + "</b>" + "<br>" + culjson.features[index].attributes.straat + " " + culjson.features[index].attributes.huisnr + "<br>" + culjson.features[index].attributes.postcode  + "<br>"  + `<button onclick="getRoute(${cullong}, ${cullat})">Route</button>`)
 }
+
+
+
+
+
+
+let list = document.getElementById('cultuur');
+
+for(let i=0; i<culjson.features.length;i++){
+  let listItem = document.createElement('li');
+  
+  listItem.textContent = culjson.features[i].attributes.naam;
+  list.appendChild(listItem);
+  
 }
 
+
+let list2 = document.getElementById('erfgoed');
+
+for(let i=0; i<erfjson.features.length;i++){
+  let listItem = document.createElement('li');
+  
+  listItem.textContent = erfjson.features[i].attributes.naam;
+  list2.appendChild(listItem);
+  
+}
+
+}
+
+
 getjson();
+
+
 
 
   let x = document.getElementById("locatie");

@@ -1,131 +1,164 @@
 <!DOCTYPE html>
 <html lang="nl-be">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cultruur & erfgoed</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cultruur & erfgoed</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin="anonymous"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" 
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js"
     integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
-    
-    <!-- routing scripts -->
-    <script src="/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js"></script>
-    <script src="lrm-graphhopper.js"></script>
-    <!-- <link rel="stylesheet" type=text/css href="/public/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css"> -->
 
-    <script src="/mapScript.js" defer>getJSON_Data(); getJSON_DataCultuur()</script>
-    <link rel="stylesheet" href="/css/mapStyle.css">
+  <!-- routing scripts -->
+  <script src="/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js"></script>
+  <script src="lrm-graphhopper.js"></script>
 
-    <link rel="stylesheet" type=text/css href="/css/style.css">
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/favicon-16x16.png">
-    <link rel="manifest" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/site.webmanifest">
-    <link rel="mask-icon" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/safari-pinned-tab.svg" color="#cf0039">
-    <meta name="msapplication-TileColor" content="#cf0039">
-    <meta name="theme-color" content="#cf0039">
 
-    <link href="https://cdn.antwerpen.be/core_branding_scss/3.0.3/main.min.css" rel="stylesheet" type="text/css">
+  <script src="/mapScript.js" defer>getJSON_Data(); getJSON_DataCultuur()</script>
+  <link rel="stylesheet" href="/css/mapStyle.css">
+
+  <link rel="stylesheet" type=text/css href="/css/style.css">
+
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="https://cdn.antwerpen.be/core_branding_favicons/citizens/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="https://cdn.antwerpen.be/core_branding_favicons/citizens/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="https://cdn.antwerpen.be/core_branding_favicons/citizens/favicon-16x16.png">
+  <link rel="manifest" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/site.webmanifest">
+  <link rel="mask-icon" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/safari-pinned-tab.svg"
+    color="#cf0039">
+  <meta name="msapplication-TileColor" content="#cf0039">
+  <meta name="theme-color" content="#cf0039">
+
+  <link href="https://cdn.antwerpen.be/core_branding_scss/3.0.3/main.min.css" rel="stylesheet" type="text/css">
 
 </head>
-  <body onload = getjson()>
-    <header>
-        <!-- Logo Antwerpen -->
-        <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
-        <div class="top">
-            <nav>
-            <ul>
-                <li><a href= '/'>Map</a></li>
-                <li><a href=#><span onclick="CheckNav()">Lijst</span></a></li>
-                <li><a href='/contact'>Contact</a></li>
-                <li><a href= #>Over ons</a></li>
-            </ul>
-            </nav>  
-        </div>
-        <!-- Hamburger Menu -->
-        <nav role="navigation">
-            <div id="menuToggle">
-              <input type="checkbox" />
-              <span></span>
-              <span></span>
-              <span></span>
+
+<body onload=getjson()>
+  <header>
+    <!-- Logo Antwerpen -->
+    <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
+    <div class="top">
+      <nav>
+        <ul>
+          <li><a href='/'>Map</a></li>
+          <li><a href=#><span onclick="CheckNav()">Lijst</span></a></li>
+          <li><a href='/contact'>Contact</a></li>
+          <li><a href=#>Over ons</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Hamburger Menu -->
+    <nav role="navigation">
+      <div id="menuToggle">
+        <input type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+          <li><a href='/'>Map</a></li>
+          <li><a href=#><span onclick="CheckNav()" id="lijst">Lijst</span></a></li>
+          <li><a href='/contact'>Contact</a></li>
+          <li><a href=#>Over ons</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <!-- Sidenav -->
+    <div id="sidenav">
+      <!-- <span onclick="openNav()">open</span> -->
+      <div id="mySidenav" class="sidenav">
+        <ul id="collapse">
+          <li class="collapse">
+            <input type="checkbox" id="m1"/>
+            <label for="m1">
+              Cultuur
+            </label>
+            <ul id=cultuur>
               
-              <ul id="menu">
-                <li><a href= '/'>Map</a></li>
-                <li><a href=#><span onclick="CheckNav()" id="lijst">Lijst</span></a></li>
-                <li><a href='/contact'>Contact</a></li>
-                <li><a href= #>Over ons</a></li>
-              </ul>
-            </div>
-          </nav>
-    </header>
-    <main>
-        <!-- Sidenav -->
-        <div id="sidenav">
-            <!-- <span onclick="openNav()">open</span> -->
-            <div id="mySidenav" class="sidenav">
-                <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
-                <!-- <% for(let index=0; index < jsonData.features.length; index++) { %>
-                    <li> <%= jsonData.features[index].attributes.naam %></li>
-             <% } %> -->
-                
-              </div>
-        <!-- Map -->
-            <div id="map"></div> 
+            
+            </ul>
 
 
-        <!-- Locatie gebruiker -->
-       <button onclick="getLocation()">Huidige Locatie</button>
-        <p id="locatie"></p>
 
-        </div>
+
+          
+          <li class="collapse">
+            <input type="checkbox" id="m2"/>
+            <label for="m2">
+              Erfgoed
+            </label>
+            <ul id=erfgoed>
+              
+            
+              
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
         
         
-    </main>
-    <footer>
+      </div>
+      <!-- Map -->
+      <div id="map"></div>
 
-        <div class="footer">
-            <span>&copy 2020 Antwerpen.be |</span>
-            <a href="https://www.antwerpen.be/nl/info/5310f241aaa8a74f6c8b458d/a-stad-uw-privacy-en-hoe-gebruiken" target="_blank">Privacy &amp; gebruiksvoorwaarden</a>
-        </div>
-    </footer>
+
+      <!-- Locatie gebruiker -->
+      <button onclick="getLocation()">Huidige Locatie</button>
+      <p id="locatie"></p>
+
+    </div>
+
+
+  </main>
+  <footer>
+
+    <div class="footer">
+      <span>&copy 2020 Antwerpen.be |</span>
+      <a href="https://www.antwerpen.be/nl/info/5310f241aaa8a74f6c8b458d/a-stad-uw-privacy-en-hoe-gebruiken"
+        target="_blank">Privacy &amp; gebruiksvoorwaarden</a>
+    </div>
+  </footer>
 </body>
 
 
 <script>
- // Functie om navigatie te sluiten en open doen, door op Lijst te klikken
-function CheckNav()
-{
+  // Functie om navigatie te sluiten en open doen, door op Lijst te klikken
+  function CheckNav() {
     navSize = document.getElementById("mySidenav").style.width;
     console.log(navSize)
     if (navSize == "250px") {
-        return closeNav();
+      return closeNav();
     }
     return openNav();
-}
+  }
 
-function openNav() 
-{
-  document.getElementById("mySidenav").style.width = "250px";
-}
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
 
-function closeNav() {
+  function closeNav() {
 
-  document.getElementById("mySidenav").style.width = "0";
-}
+    document.getElementById("mySidenav").style.width = "0";
+  }
 
 
 
 
 </script>
 
-<!--  JSON Data inladen -->
-<script> // let jsodnData = "<%= jsonData %>";</script>
-<script src="/mapScript.js" defer></script>
+
 
 
 </html>
