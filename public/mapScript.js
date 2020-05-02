@@ -1,4 +1,5 @@
 var map = L.map('map').setView([51.2171918, 4.4212529], 10);
+var markers = new Array();
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
@@ -19,81 +20,112 @@ var Icon = L.icon({
 
 async function getjson(e){
   e.preventDefault();
+
+  let list = document.getElementById("listSidenav");
+  let filterData = new FormData(document.getElementById("filterForm"));
+  
+  //remove all markers
+  for(i=0;i<markers.length;i++) {
+    map.removeLayer(markers[i]);
+    }  
+
+  //remove everything from list
+  while (list.firstChild) {
+    list.removeChild(list.lastChild);
+  }
+
   //erfgoed locaties
   const erfurl = '/jsonerfgoed';
   const response = await fetch(erfurl);
   const erfjson = await response.json();
-  let list = document.getElementById("listSidenav");
-  let filterData = new FormData(document.getElementById("filterForm"));
-
-  if (typeof markerGroup !== 'undefined') {
-    map.removeLayer(markerGroup);
-  }
-  var markerGroup = L.layerGroup().addTo(map);
- 
-
+  
   for(let index=0; index< erfjson.features.length; index++){
-    console.log();
     if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
-      //markers
-      console.log("all");
-      const erflong = erfjson.features[index].geometry.y;
-      const erflat = erfjson.features[index].geometry.x;
-      const marker = L.marker([erflong,erflat],{icon: Icon}).addTo(markerGroup);
-      marker.bindPopup("<br>" + erfjson.features[index].attributes.gemeente + "<br>" +  "<b>" + erfjson.features[index].attributes.naam + "</b>" + "<br>" + erfjson.features[index].attributes.straat + " " + erfjson.features[index].attributes.huisnr + "<br>" + erfjson.features[index].attributes.postcode  + "<br>" + `<button onclick="getRoute(${erflong}, ${erflat})">Route</button>`);
-    
-      //lijst
-      let listItem = document.createElement("li");
-      let itemList = document.createElement("ul");
-      let itemTitel = document.createElement("li");
-      let itemContent =  document.createElement("li");
-      itemTitel.innerHTML = "<b>" + erfjson.features[index].attributes.naam + "</b>";
-      itemContent.innerHTML = "<br>" + erfjson.features[index].attributes.gemeente + "<br>" + erfjson.features[index].attributes.straat + " " + erfjson.features[index].attributes.huisnr + "<br>" + erfjson.features[index].attributes.postcode  + "<br>" + `<button onclick="getRoute(${erflong}, ${erflat})">Route</button>`
-      itemList.appendChild(itemTitel);
-      itemList.appendChild(itemContent);
-      listItem.appendChild(itemList);
-      list.appendChild(listItem);
+      addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
     }
     else{
-      console.log("not all")
-      if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie) {
-        //markers
-        const erflong = erfjson.features[index].geometry.y;
-        const erflat = erfjson.features[index].geometry.x;
-        const marker = L.marker([erflong,erflat],{icon: Icon}).addTo(markerGroup);
-        marker.bindPopup("<br>" + erfjson.features[index].attributes.gemeente + "<br>" +  "<b>" + erfjson.features[index].attributes.naam + "</b>" + "<br>" + erfjson.features[index].attributes.straat + " " + erfjson.features[index].attributes.huisnr + "<br>" + erfjson.features[index].attributes.postcode  + "<br>" + `<button onclick="getRoute(${erflong}, ${erflat})">Route</button>`);
-      
-        //lijst
-        let listItem = document.createElement("li");
-        let itemList = document.createElement("ul");
-        let itemTitel = document.createElement("li");
-        let itemContent =  document.createElement("li");
-        itemTitel.innerHTML = "<b>" + erfjson.features[index].attributes.naam + "</b>";
-        itemContent.innerHTML = "<br>" + erfjson.features[index].attributes.gemeente + "<br>" + erfjson.features[index].attributes.straat + " " + erfjson.features[index].attributes.huisnr + "<br>" + erfjson.features[index].attributes.postcode  + "<br>" + `<button onclick="getRoute(${erflong}, ${erflat})">Route</button>`
-        itemList.appendChild(itemTitel);
-        itemList.appendChild(itemContent);
-        listItem.appendChild(itemList);
-        list.appendChild(listItem);
+      if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == erfjson.features[index].attributes.postcodes && filterData.get("straatnaam") == "") {
+        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == erfjson.features[index].attributes.straat) {
+        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == erfjson.features[index].attributes.straat) {
+        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == erfjson.features[index].attributes.straat) {
+        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == erfjson.features[index].attributes.straat) {
+        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
       }
     }
 
   }
 
-  //cultuurlocaties
-  // const culurl = '/jsoncultuur';
-  // const res = await fetch(culurl);
-  // const culjson = await res.json();
-  // for(let index=0; index< culjson.features.length; index++){
+  // cultuurlocaties
+  const culurl = '/jsoncultuur';
+  const res = await fetch(culurl);
+  const culjson = await res.json();
 
-  //   const cullong = culjson.features[index].geometry.y;
-  //   const cullat = culjson.features[index].geometry.x;
-  //   const marker = L.marker([cullong,cullat],{icon: greenIcon}).addTo(markerGroup);
-  //   marker.bindPopup("<br>" + culjson.features[index].attributes.gemeente + "<br>" +  "<b>" + culjson.features[index].attributes.naam + "</b>" + "<br>" + culjson.features[index].attributes.straat + " " + culjson.features[index].attributes.huisnr + "<br>" + culjson.features[index].attributes.postcode  + "<br>"  + `<button onclick="getRoute(${cullong}, ${cullat})">Route</button>`)
-  // }
+  for(let index=0; index< culjson.features.length; index++){
+    if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+      addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+    }
+    else{
+      if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam") == culjson.features[index].attributes.straat) {
+        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == culjson.features[index].attributes.straat) {
+        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam") == culjson.features[index].attributes.straat) {
+        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+      }
+      else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == culjson.features[index].attributes.straat) {
+        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+      }
+    }
+  }
+}
+
+function addlocation(long, lat, naam, straat, huisnr, gemeente, postcode, email, telefoon, link) {
+          //markers
+          let list = document.getElementById("listSidenav");
+          const marker = L.marker([long,lat],{icon: Icon}).addTo(map);
+          marker.bindPopup("<br>" + gemeente + "<br>" +  "<b>" + naam + "</b>" + "<br>" + straat + " " + huisnr + "<br>" + postcode  + "<br>"  + `<button onclick="getRoute(${long}, ${lat})">Route</button>`)
+          markers.push(marker);
+
+          //lijst
+          let listItem = document.createElement("li");
+          let itemList = document.createElement("ul");
+          let itemTitel = document.createElement("li");
+          let itemContent =  document.createElement("li");
+          itemTitel.innerHTML = "<b>" + naam + "</b>";
+          itemContent.innerHTML = "locatie: "+ straat + " " + huisnr + "<br>" + postcode + " " + gemeente + "<br> e-mail: " + email + "<br> tel: " + telefoon + `<br> <button onclick="getRoute(${long}, ${lat})">Route</button>`
+          itemList.appendChild(itemTitel);
+          itemList.appendChild(itemContent);
+          listItem.appendChild(itemList);
+          list.appendChild(listItem);
 }
 
 
-document.addEventListener("load", getjson);
+window.addEventListener("load", getjson);
 document.getElementById("filterForm").addEventListener("submit", getjson);
 
 
