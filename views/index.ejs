@@ -11,6 +11,7 @@
             <!-- <span onclick="openNav()">open</span> -->
             <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
             <div id="mySidenav" class="sidenav">
+<<<<<<< HEAD
                 <form id="filterForm" action="" method="get">
                     <label for="Categorieën"><p>Categorieën:</p></label>
                     <select name="Categorieën">
@@ -45,6 +46,13 @@
                     <input type="submit" value="Filter">
                 </form>
              <ul id="listSidenav"></ul>
+=======
+                <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
+                <!-- <% for(let index=0; index < jsonData.features.length; index++) { %>
+                    <li> <%= jsonData.features[index].attributes.naam %></li>
+             <% } %> -->
+                
+>>>>>>> 8adee6e878001d87d326c7dc8a5ea070bcc41be4
               </div>
         <!-- Map -->
             <div id="map"></div> 
@@ -58,11 +66,21 @@
         
         
     </main>
+<<<<<<< HEAD
     <%- include('partials/footer') %>
+=======
+    <footer>
+
+        <div class="footer">
+            <span>&copy 2020 Antwerpen.be |</span>
+            <a href="https://www.antwerpen.be/nl/info/5310f241aaa8a74f6c8b458d/a-stad-uw-privacy-en-hoe-gebruiken" target="_blank">Privacy &amp; gebruiksvoorwaarden</a>
+        </div>
+    </footer>
+>>>>>>> 8adee6e878001d87d326c7dc8a5ea070bcc41be4
 </body>
 
 <!--  JSON Data inladen -->
-<script>let jsodnData = "<%= jsonData %>";</script>
+<script> // let jsodnData = "<%= jsonData %>";</script>
 <script src="/mapScript.js" defer></script>
 
 
