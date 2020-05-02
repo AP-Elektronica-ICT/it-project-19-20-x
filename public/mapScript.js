@@ -25,8 +25,12 @@ async function getjson(e){
   const erfjson = await response.json();
   let list = document.getElementById("listSidenav");
   let filterData = new FormData(document.getElementById("filterForm"));
+
+  if (typeof markerGroup !== 'undefined') {
+    map.removeLayer(markerGroup);
+  }
   var markerGroup = L.layerGroup().addTo(map);
-  markerGroup.clearLayers();
+ 
 
   for(let index=0; index< erfjson.features.length; index++){
     console.log();
@@ -76,19 +80,20 @@ async function getjson(e){
   }
 
   //cultuurlocaties
-  const culurl = '/jsoncultuur';
-  const res = await fetch(culurl);
-  const culjson = await res.json();
-  for(let index=0; index< culjson.features.length; index++){
+  // const culurl = '/jsoncultuur';
+  // const res = await fetch(culurl);
+  // const culjson = await res.json();
+  // for(let index=0; index< culjson.features.length; index++){
 
-    const cullong = culjson.features[index].geometry.y;
-    const cullat = culjson.features[index].geometry.x;
-    const marker = L.marker([cullong,cullat],{icon: greenIcon}).addTo(markerGroup);
-    marker.bindPopup("<br>" + culjson.features[index].attributes.gemeente + "<br>" +  "<b>" + culjson.features[index].attributes.naam + "</b>" + "<br>" + culjson.features[index].attributes.straat + " " + culjson.features[index].attributes.huisnr + "<br>" + culjson.features[index].attributes.postcode  + "<br>"  + `<button onclick="getRoute(${cullong}, ${cullat})">Route</button>`)
-  }
+  //   const cullong = culjson.features[index].geometry.y;
+  //   const cullat = culjson.features[index].geometry.x;
+  //   const marker = L.marker([cullong,cullat],{icon: greenIcon}).addTo(markerGroup);
+  //   marker.bindPopup("<br>" + culjson.features[index].attributes.gemeente + "<br>" +  "<b>" + culjson.features[index].attributes.naam + "</b>" + "<br>" + culjson.features[index].attributes.straat + " " + culjson.features[index].attributes.huisnr + "<br>" + culjson.features[index].attributes.postcode  + "<br>"  + `<button onclick="getRoute(${cullong}, ${cullat})">Route</button>`)
+  // }
 }
 
-document.addEventListener('load', getjson);
+
+document.addEventListener("load", getjson);
 document.getElementById("filterForm").addEventListener("submit", getjson);
 
 
