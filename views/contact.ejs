@@ -1,68 +1,10 @@
 <!DOCTYPE html>
 <html lang="nl-be">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cultruur & erfgoed</title>
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin="anonymous"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" 
-    integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
-    
-    <!-- routing scripts -->
-    <script src="/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js"></script>
-    <script src="lrm-graphhopper.js"></script>
-    <!-- <link rel="stylesheet" type=text/css href="/public/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.css"> -->
-
-    <script src="/mapScript.js" defer>getJSON_Data(); getJSON_DataCultuur()</script>
-    <link rel="stylesheet" href="/css/mapStyle.css">
-
-    <link rel="stylesheet" type=text/css href="/css/style.css">
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/favicon-16x16.png">
-    <link rel="manifest" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/site.webmanifest">
-    <link rel="mask-icon" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/safari-pinned-tab.svg" color="#cf0039">
-    <meta name="msapplication-TileColor" content="#cf0039">
-    <meta name="theme-color" content="#cf0039">
-
-    <link href="https://cdn.antwerpen.be/core_branding_scss/3.0.3/main.min.css" rel="stylesheet" type="text/css">
-
+  <%- include('partials/meta') %>
 </head>
 <!-- <body> -->
-    <header>
-        <!-- Logo Antwerpen -->
-        <a href = "/"><img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen"></a>
-        <div class="top">
-            <nav>
-            <ul>
-                <li><a href= '/'>Map</a></li>
-                <li><a href=#> <span onclick="CheckNav()" ></span>Lijst</span></a></li>
-                <li><a href='/contact'>Contact</a></li>
-                <li><a href= #>Over ons</a></li>
-            </ul>
-            </nav>  
-        </div>
-        <!-- Hamburger Menu -->
-        <nav role="navigation">
-            <div id="menuToggle">
-              <input type="checkbox" />
-              <span></span>
-              <span></span>
-              <span></span>
-              
-              <ul id="menu">
-                <li><a href= '/'>Map</a></li>
-                <li><a href=#> <span onclick="CheckNav()" id="lijst">Lijst</span></a></li>
-                <li><a href='/contact'>Contact</a></li>
-                <li><a href= #>Over ons</a></li>
-              </ul>
-            </div>
-          </nav>
-    </header>
+  <%- include('partials/header') %>
     <main>
         <div class="container">
             <form>
@@ -81,13 +23,7 @@
             </form>
           </div>
     </main>
-    <footer>
-
-        <div>
-            <span>&copy 2020 Antwerpen.be |</span>
-            <a href="https://www.antwerpen.be/nl/info/5310f241aaa8a74f6c8b458d/a-stad-uw-privacy-en-hoe-gebruiken" target="_blank">Privacy &amp; gebruiksvoorwaarden</a>
-        </div>
-    </footer>
+    <%- include('partials/footer') %>
 </body>
 
 </html>
