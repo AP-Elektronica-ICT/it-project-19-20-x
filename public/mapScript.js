@@ -47,7 +47,8 @@ for(let index=0; index< culjson.features.length; index++){
 
 
 
-
+//for loop om data in lijst te krijgen
+//nog niet klaar
 
 let list = document.getElementById('cultuur');
 
