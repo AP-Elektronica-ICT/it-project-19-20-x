@@ -15,7 +15,7 @@ app.use(express.static(__dirname + '/public'));
 
 async function JSON_Data()
 {
-  // Cultuurlocaties
+  // Cultuurlocaties fetch
 const responeCultuur = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json')
 .then((response) => {
   return response.json();
@@ -27,7 +27,7 @@ const responeCultuur = await fetch('https://geodata.antwerpen.be/arcgissql/rest/
     });
 });
 
-//Erfgoedlocaties
+//Erfgoedlocaties fetch
 const responeErfgoed = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1%3D1&outFields=*&outSR=4326&f=json')
 .then((response) => {
   return response.json();
@@ -40,10 +40,16 @@ const responeErfgoed = await fetch('https://geodata.antwerpen.be/arcgissql/rest/
 });
 }
 
-
+// Views voor de andere paginas
+// Contact pagina
 app.get('/contact', (req,res) => 
 {
   res.render('contact')
+});
+// Login pagina
+app.get('/login', (req,res) => 
+{
+  res.render('login')
 });
 
 //erfgoed data
