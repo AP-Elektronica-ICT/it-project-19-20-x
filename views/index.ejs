@@ -1,69 +1,164 @@
 <!DOCTYPE html>
 <html lang="nl-be">
-<head>   
-    <%- include('partials/meta') %>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cultruur & erfgoed</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js"
+    integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+
+  <!-- routing scripts -->
+  <script src="/leaflet-routing-machine-3.2.12/dist/leaflet-routing-machine.js"></script>
+  <script src="lrm-graphhopper.js"></script>
+
+
+  <script src="/mapScript.js" defer>getJSON_Data(); getJSON_DataCultuur()</script>
+  <link rel="stylesheet" href="/css/mapStyle.css">
+
+  <link rel="stylesheet" type=text/css href="/css/style.css">
+
+  <link rel="apple-touch-icon" sizes="180x180"
+    href="https://cdn.antwerpen.be/core_branding_favicons/citizens/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="https://cdn.antwerpen.be/core_branding_favicons/citizens/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="https://cdn.antwerpen.be/core_branding_favicons/citizens/favicon-16x16.png">
+  <link rel="manifest" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/site.webmanifest">
+  <link rel="mask-icon" href="https://cdn.antwerpen.be/core_branding_favicons/citizens/safari-pinned-tab.svg"
+    color="#cf0039">
+  <meta name="msapplication-TileColor" content="#cf0039">
+  <meta name="theme-color" content="#cf0039">
+
+  <link href="https://cdn.antwerpen.be/core_branding_scss/3.0.3/main.min.css" rel="stylesheet" type="text/css">
+
 </head>
-  <body>
-    <%- include('partials/header') %>
-    <main>
-        <!-- Sidenav -->
-        <div id="sidenav">
-            <!-- <span onclick="openNav()">open</span> -->
-            <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
-            <div id="mySidenav" class="sidenav">
-                <form id="filterForm" action="" method="get">
-                    <label for="Categorieën"><p>Categorieën:</p></label>
-                    <select name="Categorieën">
-                        <option value="all">all</option>
-                        <option value="Museum">Museum</option>
-                        <option value="Archief">Archief</option>
-                        <option value="Erfgoedbibliotheek">Erfgoedbibliotheek</option>
-                        <option value="Erfgoedvereniging">Erfgoedvereniging</option>
-                        <option value="Documentatiecentrum">Documentatiecentrum</option>
-                        <option value="Levensbeschouwelijk erfgoed">Levensbeschouwelijk erfgoed</option>
-                        <option value="Museumdepot">Museumdepot</option>
-                        <option value="Cultuurcentrum">Cultuurcentrum</option>
-                    </select>
-                    <!-- <select name="Type">
-                        <option value="Overdekt">Overdekt</option>
-                        <option value="Openlucht">Openlucht</option>
-                        <option value="Openbaar domein">Openbaar domein</option>
-                    </select> -->
-                    <label for="postcodes"><p> postcodes:</p></label>
-                    <select name="postcodes">
-                        <option value="all">all</option>
-                        <option value="2000">2000</option>
-                        <option value="2020">2020</option>
-                        <option value="2030">2030</option>
-                        <option value="2040">2040</option>
-                        <option value="2050">2050</option>
-                        <option value="2060">2060</option>
-                        <option value="2018">2018</option>
-                    </select>
-                    <label for="straatnaam"><p>straatnaam:</p></label>
-                    <input type="text" name="straatnaam">
-                    <input type="submit" value="Filter">
-                </form>
-             <ul id="listSidenav"></ul>
-              </div>
-        <!-- Map -->
-            <div id="map"></div> 
+
+<body onload=getjson()>
+  <header>
+    <!-- Logo Antwerpen -->
+    <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
+    <div class="top">
+      <nav>
+        <ul>
+          <li><a href='/'>Map</a></li>
+          <li><a href=#><span onclick="CheckNav()">Lijst</span></a></li>
+          <li><a href='/contact'>Contact</a></li>
+          <li><a href=#>Over ons</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- Hamburger Menu -->
+    <nav role="navigation">
+      <div id="menuToggle">
+        <input type="checkbox" />
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+          <li><a href='/'>Map</a></li>
+          <li><a href=#><span onclick="CheckNav()" id="lijst">Lijst</span></a></li>
+          <li><a href='/contact'>Contact</a></li>
+          <li><a href=#>Over ons</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <!-- Sidenav -->
+    <div id="sidenav">
+      <!-- <span onclick="openNav()">open</span> -->
+      <div id="mySidenav" class="sidenav">
+        <ul id="collapse">
+          <li class="collapse">
+            <input type="checkbox" id="m1"/>
+            <label for="m1">
+              Cultuur
+            </label>
+            <ul id=cultuur>
+              
+            
+            </ul>
 
 
-        <!-- Locatie gebruiker -->
-       <button onclick="getLocation()">Huidige Locatie</button>
-        <p id="locatie"></p>
 
-        </div>
+
+          
+          <li class="collapse">
+            <input type="checkbox" id="m2"/>
+            <label for="m2">
+              Erfgoed
+            </label>
+            <ul id=erfgoed>
+              
+            
+              
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
         
         
-    </main>
-    <%- include('partials/footer') %>
+      </div>
+      <!-- Map -->
+      <div id="map"></div>
+
+
+      <!-- Locatie gebruiker -->
+      <button onclick="getLocation()">Huidige Locatie</button>
+      <p id="locatie"></p>
+
+    </div>
+
+
+  </main>
+  <footer>
+
+    <div class="footer">
+      <span>&copy 2020 Antwerpen.be |</span>
+      <a href="https://www.antwerpen.be/nl/info/5310f241aaa8a74f6c8b458d/a-stad-uw-privacy-en-hoe-gebruiken"
+        target="_blank">Privacy &amp; gebruiksvoorwaarden</a>
+    </div>
+  </footer>
 </body>
 
-<!--  JSON Data inladen -->
-<script>let jsodnData = "<%= jsonData %>";</script>
-<script src="/mapScript.js" defer></script>
+
+<script>
+  // Functie om navigatie te sluiten en open doen, door op Lijst te klikken
+  function CheckNav() {
+    navSize = document.getElementById("mySidenav").style.width;
+    console.log(navSize)
+    if (navSize == "250px") {
+      return closeNav();
+    }
+    return openNav();
+  }
+
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  function closeNav() {
+
+    document.getElementById("mySidenav").style.width = "0";
+  }
+
+
+
+
+</script>
+
+
 
 
 </html>
