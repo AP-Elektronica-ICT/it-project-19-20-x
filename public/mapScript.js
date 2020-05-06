@@ -125,7 +125,7 @@ function addlocation(long, lat, naam, straat, huisnr, gemeente, postcode, email,
             itemContent.innerHTML += "<br> tel: " + telefoon 
           }
           if(link != undefined) {
-            itemContent.innerHTML += `<br> link: <a href="${link}">${link}</a>`;
+            itemContent.innerHTML += `<br> link: <a href="http://${link}">${link}</a>`;
           }
           itemContent.innerHTML += `<br> <button onclick="getRoute(${long}, ${lat})">Route</button>`;
 
