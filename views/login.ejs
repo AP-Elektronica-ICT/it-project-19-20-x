@@ -2,11 +2,62 @@
 <html lang="nl-be">
 <head>   
     <%- include('partials/meta') %>
+    <link rel="stylesheet" href="/css/LoginStyle.css">
 </head>
   <body>
     <%- include('partials/header') %>
     <main>
        <!-- Login form code -->
+           <div class="form-box">
+               <div class="button-box">
+                   <div id="buttonID"></div>
+                   <button type="button" class="toggle-btn" onclick="login()">Log in</button>
+                   <button type="button" class="toggle-btn" onclick="register()">Register</button>
+               </div>
+               <div class="social-icons">
+                   <img src="fb.png">
+                   <img src="tw.png">
+                   <img src="gp.png">
+               </div>
+               <!-- Log in Form begin -->
+               <form id="login" class ="input-group">
+                   <input type="text" class="input-field" placeholder= "Gebruikersnaam" required>
+                   <input type="text" class="input-field" placeholder= "Wachtwoord" required>
+                   <input type="checkbox" class="check-box"><span class="checkboxSpan">Wachtwoord onthouden?</span>
+                   <button type="submit" class= "submit-button">Log in</button>
+               </form>
+               <!-- Log in Form Einde -->
+               <!-- Registratie Form begin -->
+               <form id="registreer" class ="input-group">
+                <input type="email" class="input-field" placeholder= "Email" required>
+                <input type="text" class="input-field" placeholder= "Gebruikersnaam" required>
+                <input type="text" class="input-field" placeholder= "Wachtwoord" required>
+                <input type="checkbox" class="check-box"><span class="checkboxSpan">Accepteer ToS</span>
+                <button type="submit" class= "submit-button">Registreer</button>
+            </form>
+            <!-- Registratie Form Einde -->
+           </div>
+
+           <script>
+           let  x = document.getElementById("login")
+           let  y = document.getElementById("registreer")
+           let  z = document.getElementById("buttonID")
+
+           function register()
+           {
+               x.style.left = "-440px";
+               y.style.left = "10px";
+               z.style.left = "110px";
+           }
+
+           function login()
+           {
+               x.style.left = "10px";
+               y.style.left = "-440px";
+               z.style.left = "0px";
+           }
+           
+           </script>
        
     </main>
     <%- include('partials/footer') %>
