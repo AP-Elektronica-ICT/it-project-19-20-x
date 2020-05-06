@@ -40,30 +40,116 @@ async function getjson(e){
   const erfjson = await response.json();
   
   for(let index=0; index< erfjson.features.length; index++){
-    if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
-      addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+    if (filterData.get("Categorieën") == "all" && 
+          filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+      addlocation(erfjson.features[index].geometry.y, 
+                  erfjson.features[index].geometry.x, 
+                  erfjson.features[index].attributes.naam, 
+                  erfjson.features[index].attributes.straat, 
+                  erfjson.features[index].attributes.huisnr, 
+                  erfjson.features[index].attributes.gemeente, 
+                  erfjson.features[index].attributes.postcode, 
+                  erfjson.features[index].attributes.email, 
+                  erfjson.features[index].attributes.telefoon, 
+                  erfjson.features[index].attributes.link);
     }
-    else{
-      if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+    else
+    {
+      if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && 
+            filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+
+        addlocation(erfjson.features[index].geometry.y, 
+                    erfjson.features[index].geometry.x, 
+                    erfjson.features[index].attributes.naam, 
+                    erfjson.features[index].attributes.straat, 
+                    erfjson.features[index].attributes.huisnr, 
+                    erfjson.features[index].attributes.gemeente, 
+                    erfjson.features[index].attributes.postcode, 
+                    erfjson.features[index].attributes.email, 
+                    erfjson.features[index].attributes.telefoon, 
+                    erfjson.features[index].attributes.link);
       }
-      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      else if (filterData.get("Categorieën") == "all" && 
+                filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+        addlocation(erfjson.features[index].geometry.y, 
+                    erfjson.features[index].geometry.x, 
+                    erfjson.features[index].attributes.naam, 
+                    erfjson.features[index].attributes.straat, 
+                    erfjson.features[index].attributes.huisnr, 
+                    erfjson.features[index].attributes.gemeente, 
+                    erfjson.features[index].attributes.postcode, 
+                    erfjson.features[index].attributes.email, 
+                    erfjson.features[index].attributes.telefoon, 
+                    erfjson.features[index].attributes.link);
       }
-      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && 
+                  filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+        addlocation(erfjson.features[index].geometry.y, 
+                    erfjson.features[index].geometry.x, 
+                    erfjson.features[index].attributes.naam, 
+                    erfjson.features[index].attributes.straat, 
+                    erfjson.features[index].attributes.huisnr, 
+                    erfjson.features[index].attributes.gemeente, 
+                    erfjson.features[index].attributes.postcode, 
+                    erfjson.features[index].attributes.email, 
+                    erfjson.features[index].attributes.telefoon, 
+                    erfjson.features[index].attributes.link);
       }
-      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && 
+                filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
+        addlocation(erfjson.features[index].geometry.y, 
+                    erfjson.features[index].geometry.x, 
+                    erfjson.features[index].attributes.naam, 
+                    erfjson.features[index].attributes.straat, 
+                    erfjson.features[index].attributes.huisnr, 
+                    erfjson.features[index].attributes.gemeente, 
+                    erfjson.features[index].attributes.postcode, 
+                    erfjson.features[index].attributes.email, 
+                    erfjson.features[index].attributes.telefoon, 
+                    erfjson.features[index].attributes.link);
       }
-      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      else if (filterData.get("Categorieën") == "all" && 
+                filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
+        addlocation(erfjson.features[index].geometry.y, 
+                    erfjson.features[index].geometry.x, 
+                    erfjson.features[index].attributes.naam, 
+                    erfjson.features[index].attributes.straat, 
+                    erfjson.features[index].attributes.huisnr, 
+                    erfjson.features[index].attributes.gemeente, 
+                    erfjson.features[index].attributes.postcode, 
+                    erfjson.features[index].attributes.email, 
+                    erfjson.features[index].attributes.telefoon, 
+                    erfjson.features[index].attributes.link);
       }
-      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      else if (filterData.get("Categorieën") == "all" && 
+                filterData.get("postcodes") == erfjson.features[index].attributes.postcode && 
+                filterData.get("straatnaam").toUpperCase()  == 
+                erfjson.features[index].attributes.straat.toUpperCase() ) {
+        addlocation(erfjson.features[index].geometry.y, 
+                    erfjson.features[index].geometry.x, 
+                    erfjson.features[index].attributes.naam, 
+                    erfjson.features[index].attributes.straat, 
+                    erfjson.features[index].attributes.huisnr, 
+                    erfjson.features[index].attributes.gemeente, 
+                    erfjson.features[index].attributes.postcode, 
+                    erfjson.features[index].attributes.email, 
+                    erfjson.features[index].attributes.telefoon, 
+                    erfjson.features[index].attributes.link);
       }
-      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && 
+                filterData.get("postcodes") == "all" && 
+                filterData.get("straatnaam").toUpperCase()  == 
+                rfjson.features[index].attributes.straat.toUpperCase() ) {
+        addlocation(erfjson.features[index].geometry.y, 
+                    erfjson.features[index].geometry.x, 
+                    erfjson.features[index].attributes.naam, 
+                    erfjson.features[index].attributes.straat, 
+                    erfjson.features[index].attributes.huisnr, 
+                    erfjson.features[index].attributes.gemeente, 
+                    erfjson.features[index].attributes.postcode, 
+                    erfjson.features[index].attributes.email, 
+                    erfjson.features[index].attributes.telefoon, 
+                    erfjson.features[index].attributes.link);
       }
     }
 
