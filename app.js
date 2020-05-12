@@ -60,8 +60,25 @@ app.listen(app.get('port'), () =>
     app.get('port')}; press Ctrl-c to terminate.`);
 });
 
-
 // Database Code
+/*
+app.post('/signup', function (req,res,next)
+{
+  let user =
+  {
+    Name: req.body.name,
+       Email: req.body.email,
+       Pass: req.body.pass,
+  };
+
+  var UserReg = mongoose.model('UserReg', UserSchema);
+   UserReg.create(user, function(err, newUser) {
+      if(err) return next(err);
+      req.session.user = email;
+      return res.send('Logged In!');
+   });
+
+});
 
 mongoose.connect(uri, {useUnifiedTopology: true ,useNewUrlParser: true } );
 
@@ -73,22 +90,38 @@ db.once('open', function() {
 
 let Schema = mongoose.Schema;
 
-  let UserSchema = new Schema({
-    _id: Number,
-    userName:  String,
-    Password: String,
-    Email:   String,
-    Favourites: 
+// Schema
+let UserRegSchema = mongoose.Schema
+({
+  Name: String,
+  Email: String,
+  Pass: String,
+  Num: Number,
+  Favourites: 
       [{ 
         objID: Number
-      }],
-  });
+      }]
+});
 
+// Model
+let UserReg = mongoose.model('UserReg', UserRegSchema);
 
+// Add in collection
+let UserAdd = new UserReg({
+  Name: req.body.name,
+  Email: req.body.email,
+  Password: req.body.pass,
+});
 
+// Save
+UserAdd.save(function (err, fluffy) {
+  if (err) return console.error(err);
+});
 
 function CheckUserExsist(givenUserName)
 {
   UserSchema.findOne({userName: givenUserName})
 
 }
+
+*/

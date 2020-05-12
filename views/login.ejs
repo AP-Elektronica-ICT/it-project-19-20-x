@@ -29,11 +29,11 @@
                <!-- Log in Form Einde -->
                <!-- Registratie Form begin -->
                <form id="registreer" class ="input-group">
-                <input type="email" class="input-field" placeholder= "Email" required>
-                <input type="text" class="input-field" placeholder= "Gebruikersnaam" required>
-                <input type="text" class="input-field" placeholder= "Wachtwoord" required>
+                <input type="email" class="input-field" id="email" placeholder= "Email" required>
+                <input type="text" class="input-field" id="name" placeholder= "Gebruikersnaam" required>
+                <input type="text" class="input-field" id="pass" placeholder= "Wachtwoord" required>
                 <input type="checkbox" class="check-box"><span class="checkboxSpan">Accepteer ToS</span>
-                <button type="submit" class= "submit-button">Registreer</button>
+                <button type="submit" class= "submit-button" id="reg-btn">Registreer</button>
             </form>
             <!-- Registratie Form Einde -->
            </div>
@@ -56,7 +56,20 @@
                y.style.left = "-440px";
                z.style.left = "0px";
            }
-           
+
+        $(document).ready(function() {
+        $("#reg-btn").click(function() {
+            var name = $("#name").val();
+            var email = $("#email").val();
+            var pass = $("#pass").val();
+            $.post("/signup", {
+                Name: name,
+                Email: email,
+                Pass: pass,
+                Num: num
+            });
+        });
+    });
            </script>
        
     </main>
