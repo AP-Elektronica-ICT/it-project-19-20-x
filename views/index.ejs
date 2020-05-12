@@ -46,15 +46,16 @@
                 </form>
              <ul id="listSidenav"></ul>
               </div>
+        </div>
         <!-- Map -->
             <div id="map"></div> 
 
-
+        </div>
         <!-- Locatie gebruiker -->
-       <button onclick="getLocation()">Huidige Locatie</button>
+       <button class="location" onclick="getLocation()">Huidige Locatie</button>
         <p id="locatie"></p>
 
-        </div>
+        
         
         
     </main>
@@ -62,7 +63,6 @@
 </body>
 
 <!--  JSON Data inladen -->
-<script>let jsodnData = "<%= jsonData %>";</script>
 <script src="/mapScript.js" defer></script>
 
 
