@@ -19,7 +19,7 @@ input[type=checkbox]
     width: 220px;
     height: 35px auto;
     position: relative;
-    box-shadow: 0 0 20px 9px #ff61241f;
+    
     border-radius: 30px;
 }
 
@@ -41,7 +41,8 @@ input[type=checkbox]
     position: absolute;
     width: 110px;
     height: 100%;
-    background: linear-gradient(to right, #ff105f, #ffad06);
+    /* background: linear-gradient(to right, #ff105f, #ffad06); */
+    background-color: #e7e7e7; color: black;
     border-radius: 30px;
     transition: .5s;
 
@@ -88,7 +89,8 @@ input[type=checkbox]
     cursor: pointer;
     display: block;
     margin: auto;
-    background: linear-gradient(to right, #ff105f, #ffad06);
+    background-color: #e7e7e7; color: black;
+    /* background: linear-gradient(to right, #ff105f, #ffad06); */
     border:0;
     outline:none;
     border-radius: 30px;
