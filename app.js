@@ -1,6 +1,13 @@
+// Webserver Requires
 const express = require('express');
 const fetch = require('node-fetch');
 const ejs = require('ejs');
+//Requires  voor Database
+const {MongoClient} = require('mongodb');
+const uri = 'mongodb+srv://Lars:APLabo@oefeningenwebont-fdenf.mongodb.net/test?retryWrites=true&w=majority';
+const DATABASE = 'IT-Project-X';
+const COLLECTION_DATABASE = 'Users';
+var mongoose = require('mongoose');
 
 let dataCultuur;
 let dataErfgoed;
@@ -54,37 +61,34 @@ app.listen(app.get('port'), () =>
 });
 
 
-// Cultuurlocatie Link
-// https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json
+// Database Code
 
-// Erfgoedlocatie link
-//https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1%3D1&outFields=*&outSR=4326&f=json
+mongoose.connect(uri, {useUnifiedTopology: true ,useNewUrlParser: true } );
+
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+});
+
+let Schema = mongoose.Schema;
+
+  let UserSchema = new Schema({
+    _id: Number,
+    userName:  String,
+    Password: String,
+    Email:   String,
+    Favourites: 
+      [{ 
+        objID: Number
+      }],
+  });
 
 
 
-/*
- // Cultuurlocaties
- const responeCultuur = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json')
- .then((response) => {
-   return response.json();
- })
- .then((data) => {
-   cultuurData = JSON.stringify(data);
-   app.get('/', (req,res) => {
-     res.render('index', {'jsonData': JSON.stringify(data)})
-     });
- });
 
- //Erfgoedlocaties
- const responeErfgoed = await fetch('https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1%3D1&outFields=*&outSR=4326&f=json')
- .then((response) => {
-   return response.json();
- })
- .then((data) => {
-   erfgoedData = JSON.stringify(data);
-   app.get('/', (req,res) => {
-     res.render('index', {'jsonData': JSON.stringify(data)})
-     });
- });
+function CheckUserExsist(givenUserName)
+{
+  UserSchema.findOne({userName: givenUserName})
 
- */
+}

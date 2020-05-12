@@ -28,6 +28,7 @@ input[type=checkbox]
     padding: 10px 30px;
     cursor: pointer;
     background: transparent;
+    color: black;
     border: 0;
     outline: none;
     position: relative;
