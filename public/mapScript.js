@@ -116,8 +116,9 @@ function addlocation(long, lat, naam, straat, huisnr, gemeente, postcode, email,
           let itemList = document.createElement("ul");
           let itemTitel = document.createElement("li");
           let itemContent =  document.createElement("li");
+          let itemFavourite = document.createElement("ul");
           itemTitel.innerHTML = "<b>" + naam + "</b>";
-          itemContent.innerHTML = "locatie: "+ straat + " " + huisnr + "<br>" + postcode + " " + gemeente;
+          itemContent.innerHTML = "locatie: "+ straat + " " + huisnr + "<br>" + postcode + " " + gemeente ;
           if(email != undefined) {
             itemContent.innerHTML += `<br> e-mail: <a href = "mailto: ${email}">${email}</a>`;
           }
@@ -128,9 +129,13 @@ function addlocation(long, lat, naam, straat, huisnr, gemeente, postcode, email,
             itemContent.innerHTML += `<br> link: <a href="http://${link}">${link}</a>`;
           }
           itemContent.innerHTML += `<br> <button onclick="getRoute(${long}, ${lat})">Route</button>`;
+          
+
+        
 
           itemList.appendChild(itemTitel);
           itemList.appendChild(itemContent);
+          itemList.appendChild(itemFavourite);
           listItem.appendChild(itemList);
           list.appendChild(listItem);
 }
