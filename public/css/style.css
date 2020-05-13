@@ -155,7 +155,9 @@ button {
   background-color:gray;
   color: white;
 }
-
+#listSidenav>li{
+  font-size: medium;
+}
 @media (max-width: 767px){
     img {
         display: block;
@@ -362,14 +364,9 @@ input[type=submit] {
 }
 
 
-
-
-
-
-
-
-
-
-
+#listSidenav>li{
+  list-style: none;
+  margin-left: -55px;
+}
 
 
