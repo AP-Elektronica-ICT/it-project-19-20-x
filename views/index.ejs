@@ -12,6 +12,7 @@
             <!-- Sidenav om de lijst van erfgoed and cultuur te tonen -->
             <div id="mySidenav" class="sidenav">
                 <form id="filterForm" action="" method="get">
+                    <a href="#" onclick="closeNav()" class="close"></a>
                     <label for="Categorieën"><p>Categorieën:</p></label>
                     <select name="Categorieën">
                         <option value="all">all</option>
@@ -51,7 +52,6 @@
             <div id="map"></div> 
 
         </div>
-        
         <!-- Locatie gebruiker -->
        <button class="location" onclick="getLocation()">Huidige Locatie</button>
         <p id="locatie"></p>

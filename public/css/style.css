@@ -24,6 +24,7 @@ header {
     background-image: url("../fotoh.jpg");
     margin: 0;
 }
+
 main {
     margin: 25px 25px;
 }
@@ -53,10 +54,12 @@ li a, a:link{
 span {
     color: white;
 }
+
 main>#sidenav>#mySidenav>li{
   
 font-weight: bold;
 }
+
 
 @font-face
 {
@@ -141,7 +144,7 @@ div.top>nav>ul>li a:hover {
     z-index: 0;
 }
 .location {
-  margin-top: 3px;
+  margin-bottom: 20%;
   background-color: #333333;
   color: white;
   padding: 10px 15px;
@@ -170,7 +173,32 @@ button {
         padding: 10px 10px;
         text-decoration: none;
     }
-      
+     
+}
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
 }
 
 @media (max-width: 475px) {
@@ -235,7 +263,7 @@ button {
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-  background: gray;
+  background:red;
   border-radius: 3px;
   z-index: 1;
   transform-origin: 4px 0px;
@@ -366,7 +394,8 @@ input[type=submit] {
 
 #listSidenav>li{
   list-style: none;
-  margin-left: -55px;
+  margin-left: -75px;
 }
+
 
 
