@@ -12,7 +12,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
 });
 var Icon = L.icon({
-    iconUrl: 'icon1.png',
+    iconUrl: 'icon.png',
     iconSize:     [32, 32], // size of the icon
     iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
     popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
