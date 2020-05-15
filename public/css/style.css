@@ -397,5 +397,15 @@ input[type=submit] {
   margin-left: -75px;
 }
 
+/*for changing the favoriteIcon */
+
+.favoriteOn{
+  color: yellow;
+}
+
+.favoriteOff{
+  color: white;
+}
+
 
 
