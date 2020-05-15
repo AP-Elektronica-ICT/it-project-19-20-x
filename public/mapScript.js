@@ -39,32 +39,65 @@ async function getjson(e){
   const response = await fetch(erfurl);
   const erfjson = await response.json();
   
+
+  console.log(filterData.get("favorite123"));
   for(let index=0; index< erfjson.features.length; index++){
-    if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
-      addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+    if(filterData.get("favorite123") == null){
+      if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      }
+      else{
+        if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+      }
     }
-    else{
-      if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+    else if(filterData.get("favorite123") == "on"/*  && favoritearray.includes(erfjson.features[index].attributes.OBJECTID)*/){
+      if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
         addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
       }
-      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+      else{
+        if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
+        }
       }
-      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
-      }
-      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
-      }
-      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
-      }
-      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == erfjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
-      }
-      else if (filterData.get("Categorieën") == erfjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == erfjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
-      }
+ 
     }
 
   }
@@ -75,32 +108,63 @@ async function getjson(e){
   const culjson = await res.json();
 
   for(let index=0; index< culjson.features.length; index++){
-    if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
-      addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+    if(filterData.get("favorite123") == null){
+      if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+      }
+      else{
+        if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == culjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase() == culjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == culjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == culjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+      }
     }
-    else{
-      if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+    else if(filterData.get("favorite123") == "on"/*&& favoritearray.includes(culjson.features[index].attributes.OBJECTID)*/){
+      if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
         addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
       }
-      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
-        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
-      }
-      else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
-        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
-      }
-      else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == culjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
-      }
-      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase() == culjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
-      }
-      else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == culjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
-      }
-      else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == culjson.features[index].attributes.straat.toUpperCase() ) {
-        addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+      else{
+        if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam") == "") {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == culjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase() == culjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == culjson.features[index].attributes.postcode && filterData.get("straatnaam").toUpperCase()  == culjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
+        else if (filterData.get("Categorieën") == culjson.features[index].attributes.categorie && filterData.get("postcodes") == "all" && filterData.get("straatnaam").toUpperCase()  == culjson.features[index].attributes.straat.toUpperCase() ) {
+          addlocation(culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
+        }
       }
     }
+
   }
 }
 
