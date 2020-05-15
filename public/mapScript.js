@@ -208,10 +208,8 @@ function addlocation(objectID, long, lat, naam, straat, huisnr, gemeente, postco
           list.appendChild(listItem);
 }
 
-
 window.addEventListener("load", getjson);
 document.getElementById("filterForm").addEventListener("submit", getjson);
-
 
 let x = document.getElementById("locatie");
 
