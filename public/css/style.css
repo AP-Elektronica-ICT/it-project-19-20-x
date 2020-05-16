@@ -161,6 +161,11 @@ button {
 #listSidenav>li{
   font-size: medium;
 }
+
+div#mySidenav {
+  position: fixed;
+}
+
 @media (max-width: 767px){
     img {
         display: block;
