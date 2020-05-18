@@ -192,13 +192,13 @@ function addlocation(objectID, long, lat, naam, straat, huisnr, gemeente, postco
           }
           itemContent.innerHTML += `<br> <button onclick="getRoute(${long}, ${lat})">Route</button>`;
           
-          itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff"  onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
+          itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
           //to change button to is in or not in favorites. (WIP)
           // if (favoritearray.includes(culjson.features[index].attributes.OBJECTID)) {
-          //   itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOn"><i onclick="favorite(this, ${objectID})" class="fa fa-star-o"></i> </button>`;
+          //   itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOn" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
           // } 
           // else {
-          //   itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff"><i onclick="favorite(this, ${objectID})" class="fa fa-star-o"></i> </button>`;
+          //   itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
           // }
           
 

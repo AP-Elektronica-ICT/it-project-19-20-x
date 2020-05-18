@@ -407,5 +407,9 @@ input[type=submit] {
   color: white;
 }
 
+#favoritecheck{
+  -webkit-appearance: checkbox;
+}
+
 
 
