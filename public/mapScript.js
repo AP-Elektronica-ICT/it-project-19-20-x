@@ -249,7 +249,7 @@ function favorite(id) {
       favoritearray.splice(index, 1);
     }
     window.localStorage.setItem('favorites', JSON.stringify(favoritearray));
-  } else /* if(favoriteBtn.classList.contains("favoriteOff")) */ {
+  } else{
     favoriteBtn.classList.remove("favoriteOff");
     favoriteBtn.classList.add("favoriteOn");
 
