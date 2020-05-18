@@ -2,61 +2,55 @@
 
 
 <header>
-    <!-- Logo Antwerpen -->
-    <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
-    <div class="top">
-        <nav>
-        <ul>
-            <li><a href= '/'>Map</a></li>
-            <li><a href=#><span onclick="CheckNav()">Lijst</span></a></li>
-            <li><a href='/contact'>Contact</a></li>
-            <li><a href= #>Over ons</a></li>
-            <li><a href= '/login'>Login</a></li>
-        </ul>
-        </nav>  
+  <!-- Logo Antwerpen -->
+  <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen">
+  <div class="top">
+    <nav>
+      <ul>
+        <li><a href='/'>Map</a></li>
+        <li><a href=#><span onclick="CheckNav()">Lijst</span></a></li>
+        <li><a href='/contact'>Contact</a></li>
+        <li><a href=#>Over ons</a></li>
+        <li><a href='/login'>Login</a></li>
+      </ul>
+    </nav>
+  </div>
+  <!-- Hamburger Menu -->
+  <nav role="navigation">
+    <div id="menuToggle">
+      <input type="checkbox" />
+      <span></span>
+      <span></span>
+      <span></span>
+
+      <ul id="menu">
+        <li><a href='/'>Map</a></li>
+        <li><a href=# onclick="CheckNav()" id="lijst">Lijst</a></li>
+        <li><a href='/contact'>Contact</a></li>
+        <li><a href=#>Over ons</a></li>
+        <li><a href='/login'>Login</a></li>
+      </ul>
     </div>
-    <!-- Hamburger Menu -->
-    <nav role="navigation">
-        <div id="menuToggle">
-          <input type="checkbox" />
-          <span></span>
-          <span></span>
-          <span></span>
-          
-          <ul id="menu">
-            <li><a href= '/'>Map</a></li>
-            <li><a href=# onclick="CheckNav()" id="lijst">Lijst</a></li>
-            <li><a href='/contact'>Contact</a></li>
-            <li><a href= #>Over ons</a></li>
-            <li><a href= '/login'>Login</a></li>
-          </ul>
-        </div>
-      </nav>
+  </nav>
 </header>
 
 <script>
-    // Functie om navigatie te sluiten en open doen, door op Lijst te klikken
-   function CheckNav()
-   {
-       navSize = document.getElementById("mySidenav").style.width;
-       console.log(navSize)
-       if (navSize == "40%") {
-           return closeNav();
-       }
-       return openNav();
-   }
-   
-   function openNav() 
-   {
-     document.getElementById("mySidenav").style.width = "40%";
-   }
-   
-   function closeNav() {
-   
-     document.getElementById("mySidenav").style.width = "0";
-   }
-   
-   
-   
-   
-   </script>
+  // Functie om navigatie te sluiten en open doen, door op Lijst te klikken
+  function CheckNav() {
+    navSize = document.getElementById("mySidenav").style.width;
+    console.log(navSize)
+    if (navSize == "40%") {
+      return closeNav();
+    }
+    return openNav();
+  }
+
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "40%";
+  }
+
+  function closeNav() {
+
+    document.getElementById("mySidenav").style.width = "0";
+  }
+</script>
