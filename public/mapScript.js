@@ -234,12 +234,12 @@ function showRoute(position, destlong, destlat) {
 function favorite(id) {
   let favoriteBtn = document.getElementById(id);
   let favoritearray = JSON.parse(window.localStorage.getItem('favorites'));
-  console.log(favoritearray);
+
   if (favoritearray == null) {
     favoritearray = [];
   }
 
-  if ( /*favoriteBtn.classList.contains("favoriteOn")*/ favoritearray.includes(id)) {
+  if (favoritearray.includes(id)) {
     favoriteBtn.classList.remove("favoriteOn");
     favoriteBtn.classList.add("favoriteOff");
 
