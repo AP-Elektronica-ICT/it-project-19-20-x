@@ -3,7 +3,9 @@ const express = require('express');
 const fetch = require('node-fetch');
 const ejs = require('ejs');
 //Requires  voor Database
-const {MongoClient} = require('mongodb');
+const {
+  MongoClient
+} = require('mongodb');
 const uri = 'mongodb+srv://Lars:APLabo@oefeningenwebont-fdenf.mongodb.net/test?retryWrites=true&w=majority';
 const DATABASE = 'IT-Project-X';
 const COLLECTION_DATABASE = 'Users';
@@ -21,23 +23,22 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 
-  app.get('/', (req,res) => {
-    res.render('index')});
-  
+app.get('/', (req, res) => {
+  res.render('index')
+});
+
 
 // Views voor de andere paginas
 // Contact pagina
-app.get('/contact', (req,res) => 
-{
+app.get('/contact', (req, res) => {
   res.render('contact')
 });
 // Login pagina
-app.get('/login', (req,res) => 
-{
+app.get('/login', (req, res) => {
   res.render('login')
 });
 
-async function apistart(){
+async function apistart() {
   const erfUrl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1=1&outFields=*&outSR=4326&f=json";
   const erfResponse = await fetch(erfUrl);
   const erfjson = await erfResponse.json();
@@ -47,20 +48,19 @@ async function apistart(){
   const culjson = await culresponse.json();
 
   //erfgoed data
-  app.get('/jsonerfgoed', async (req,res) => {
+  app.get('/jsonerfgoed', async (req, res) => {
     res.json(erfjson);
   });
 
   //cultuur data
-  app.get('/jsoncultuur', async (req,res) => {
+  app.get('/jsoncultuur', async (req, res) => {
     res.json(culjson);
   });
 }
 
 apistart();
 
-app.listen(app.get('port'), () =>
-{
+app.listen(app.get('port'), () => {
   console.log(`Express Started on http://localhost:${
     app.get('port')}; press Ctrl-c to terminate.`);
 });

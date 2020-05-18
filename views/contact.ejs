@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="nl-be">
+
 <head>
   <%- include('partials/meta') %>
 </head>
 <!-- <body> -->
-  <%- include('partials/header') %>
-    <main>
-        <div class="container">
-            <form>
-              <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen"><br>
-              <label for="fname">Voornaam</label>
-              <input type="text" id="fname" name="firstname" placeholder="Voornaam..">
-          
-              <label for="lname">Naam</label>
-              <input type="text" id="lname" name="lastname" placeholder="Naam..">
-          
-              <label for="subject">Bericht</label>
-              <textarea id="subject" name="subject" placeholder="Bericht.." style="height:200px"></textarea>
-          
-              <input type="submit" value="Submit">
-          
-            </form>
-          </div>
-    </main>
-    <%- include('partials/footer') %>
+<%- include('partials/header') %>
+<main>
+  <div class="container">
+    <form>
+      <img src="A_logo_RGB_123x123.jpg" alt="logo antwerpen"><br>
+      <label for="fname">Voornaam</label>
+      <input type="text" id="fname" name="firstname" placeholder="Voornaam..">
+
+      <label for="lname">Naam</label>
+      <input type="text" id="lname" name="lastname" placeholder="Naam..">
+
+      <label for="subject">Bericht</label>
+      <textarea id="subject" name="subject" placeholder="Bericht.." style="height:200px"></textarea>
+
+      <input type="submit" value="Submit">
+
+    </form>
+  </div>
+</main>
+<%- include('partials/footer') %>
 </body>
 
 </html>
