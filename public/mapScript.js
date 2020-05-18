@@ -21,6 +21,10 @@ var Icon = L.icon({
 async function getjson(e){
   e.preventDefault();
 
+  //call favorites from localstorage
+  let favoritearray = JSON.parse(window.localStorage.getItem('favorites'));
+
+
   let list = document.getElementById("listSidenav");
   let filterData = new FormData(document.getElementById("filterForm"));
   
@@ -69,7 +73,7 @@ async function getjson(e){
         }
       }
     }
-    else if(filterData.get("favorites") == "on"/*  && favoritearray.includes(erfjson.features[index].attributes.OBJECTID)*/){
+    else if(filterData.get("favorites") == "on" && favoritearray.includes(erfjson.features[index].attributes.OBJECTID)){
       if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
         addlocation(erfjson.features[index].attributes.OBJECTID, erfjson.features[index].geometry.y, erfjson.features[index].geometry.x, erfjson.features[index].attributes.naam, erfjson.features[index].attributes.straat, erfjson.features[index].attributes.huisnr, erfjson.features[index].attributes.gemeente, erfjson.features[index].attributes.postcode, erfjson.features[index].attributes.email, erfjson.features[index].attributes.telefoon, erfjson.features[index].attributes.link);
       }
@@ -135,7 +139,7 @@ async function getjson(e){
         }
       }
     }
-    else if(filterData.get("favorites") == "on"/*&& favoritearray.includes(culjson.features[index].attributes.OBJECTID)*/){
+    else if(filterData.get("favorites") == "on" && favoritearray.includes(culjson.features[index].attributes.OBJECTID)){
       if (filterData.get("Categorieën") == "all" && filterData.get("postcodes") == "all" && filterData.get("straatnaam") == "") {
         addlocation(culjson.features[index].attributes.OBJECTID, culjson.features[index].geometry.y, culjson.features[index].geometry.x, culjson.features[index].attributes.naam, culjson.features[index].attributes.straat, culjson.features[index].attributes.huisnr, culjson.features[index].attributes.gemeente, culjson.features[index].attributes.postcode, culjson.features[index].attributes.email, culjson.features[index].attributes.telefoon, culjson.features[index].attributes.link);
       }
@@ -192,14 +196,15 @@ function addlocation(objectID, long, lat, naam, straat, huisnr, gemeente, postco
           }
           itemContent.innerHTML += `<br> <button onclick="getRoute(${long}, ${lat})">Route</button>`;
           
-          itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
-          //to change button to is in or not in favorites. (WIP)
-          // if (favoritearray.includes(culjson.features[index].attributes.OBJECTID)) {
-          //   itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOn" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
-          // } 
-          // else {
-          //   itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
-          // }
+          // to change button to is in or not in favorites.
+          let favoritearray = JSON.parse(window.localStorage.getItem('favorites'));
+
+          if (favoritearray.includes(objectID)) {
+            itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOn" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
+          } 
+          else {
+            itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
+          }
           
 
           itemList.appendChild(itemTitel);
@@ -256,18 +261,30 @@ function showRoute(position, destlong, destlat) {
 
 function favorite(id){
   let favoriteBtn = document.getElementById(id);
-
-  if (favoriteBtn.classList.contains("favoriteOn")) {
-    console.log()
+  let favoritearray = JSON.parse(window.localStorage.getItem('favorites'));
+  console.log(favoritearray);
+  if (favoritearray == null) {
+    favoritearray = [];
+  }
+  
+  if (/*favoriteBtn.classList.contains("favoriteOn")*/favoritearray.includes(id)) {
     favoriteBtn.classList.remove("favoriteOn");
     favoriteBtn.classList.add("favoriteOff");
 
     //insert remove from favoritearray
+    const index = favoritearray.indexOf(id);
+    if (index > -1) {
+      favoritearray.splice(index, 1);
+    }
+    window.localStorage.setItem('favorites', JSON.stringify(favoritearray));
   }
-  else if(favoriteBtn.classList.contains("favoriteOff")) {
+  else/* if(favoriteBtn.classList.contains("favoriteOff")) */{
     favoriteBtn.classList.remove("favoriteOff");
     favoriteBtn.classList.add("favoriteOn");
 
     //insert add to favoritearray
+    favoritearray.push(id);
+    window.localStorage.setItem('favorites', JSON.stringify(favoritearray));
+
   } 
 }
