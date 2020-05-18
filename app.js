@@ -37,22 +37,27 @@ app.get('/login', (req,res) =>
   res.render('login')
 });
 
-//erfgoed data
-app.get('/jsonerfgoed', async (req,res) => {
-const erfUrl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1=1&outFields=*&outSR=4326&f=json";
-const fetchResponse = await fetch(erfUrl);
-const json = await fetchResponse.json();
-res.json(json);
-});
+async function apistart(){
+  const erfUrl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1=1&outFields=*&outSR=4326&f=json";
+  const erfResponse = await fetch(erfUrl);
+  const erfjson = await erfResponse.json();
 
-//cultuur data
-app.get('/jsoncultuur', async (req,res) => {
-  const url = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json";
-  const response = await fetch(url);
-  const json = await response.json();
-  res.json(json);
+  const culurl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+  const culresponse = await fetch(culurl);
+  const culjson = await culresponse.json();
+
+  //erfgoed data
+  app.get('/jsonerfgoed', async (req,res) => {
+    res.json(erfjson);
   });
 
+  //cultuur data
+  app.get('/jsoncultuur', async (req,res) => {
+    res.json(culjson);
+  });
+}
+
+apistart();
 
 app.listen(app.get('port'), () =>
 {
