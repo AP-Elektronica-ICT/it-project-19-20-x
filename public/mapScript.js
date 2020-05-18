@@ -172,6 +172,10 @@ function addlocation(objectID, long, lat, naam, straat, huisnr, gemeente, postco
   // to change button to is in or not in favorites.
   let favoritearray = JSON.parse(window.localStorage.getItem('favorites'));
 
+  if (favoritearray == null) {
+    favoritearray = [];
+  }
+
   if (favoritearray.includes(objectID)) {
     itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOn" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
   } else {
