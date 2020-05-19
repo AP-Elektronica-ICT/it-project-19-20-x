@@ -181,8 +181,6 @@ function addlocation(objectID, long, lat, naam, straat, huisnr, gemeente, postco
   } else {
     itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
   }
-  
-  itemContent.innerHTML += `<br>_________________________________________________`;
 
   itemList.appendChild(itemTitel);
   itemList.appendChild(itemContent);
