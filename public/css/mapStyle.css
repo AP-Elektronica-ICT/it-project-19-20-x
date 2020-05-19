@@ -1,11 +1,11 @@
-@media screen and (max-width: 700px)
+@media screen and (max-width: 720px)
 {
     #map {
         height: 500px;
     }
 }
 
-@media screen and (max-width: 1000px)
+@media screen and (max-width: 1080px)
 {
     #map {
         height: 750px;
@@ -13,10 +13,16 @@
 }
 
 
-@media screen and (max-width: 2000px)
+@media screen and (max-width: 1440px)
 {
     #map {
-        height: 1000px;
+        height: 750px;
     }
 }
 
+@media screen and (max-width: 2160px)
+{
+    #map {
+        height: 750px;
+    }
+}
