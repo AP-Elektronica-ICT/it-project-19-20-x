@@ -1,6 +1,5 @@
 * {
-  box-sizing: border-box;
-
+    box-sizing: border-box;
 }
 
 body {
@@ -167,15 +166,13 @@ div.top>nav>ul>li a:hover {
 }
 
 button {
-  border-color: blacks;
-  background-color: gray;
+  background-color:gray;
   color: white;
 }
 
 #listSidenav>li {
   font-size: medium;
 }
-
 @media (max-width: 767px) {
   img {
     display: block;
@@ -216,10 +213,12 @@ button {
 
 .close:before {
   transform: rotate(45deg);
+  background-color: black;
 }
 
 .close:after {
   transform: rotate(-45deg);
+  background-color: black;
 }
 
 @media (max-width: 475px) {
@@ -229,16 +228,6 @@ button {
     margin-left: auto;
     margin-right: auto;
   }
-
-
-  #menuToggle {
-    display: block;
-    position: fixed;
-    top: 30px;
-    right: 20px;
-
-    z-index: 1;
-
     -webkit-user-select: none;
     user-select: none;
   }
@@ -327,47 +316,52 @@ button {
  * Make this absolute positioned
  * at the top left of the screen
  */
-  #menu {
-    position: absolute;
-    width: 200px;
-    margin: -175px 0 0 -130px;
-    padding: 50px;
-    padding-top: 175px;
+#menu
+{
+  position: absolute;
+  width: 200px;
+  margin: -60px 0 0 -100px;
+  padding: 15px;
+  
+  background: #ededed;
+  list-style-type: none;
+  /* to stop flickering of text in safari */
+  transform-origin: 100px;
+  transform: translate(100%,0 );
+  
+  transition: transform 1s cubic-bezier(0.7,1,1,1.0);
+}
 
-    background: #ededed;
-    list-style-type: none;
-    /* to stop flickering of text in safari */
-    transform-origin: 100px;
-    transform: translate(0, -100%);
+#menu li
+{
+  padding: 7px;
+  font-family: 'Antwerpen Regular';
+    font-size: 20px;
+}
 
-    transition: transform 2s cubic-bezier(0.77, 2, 1, 1.0);
-  }
-
-  #menu li {
-    padding: 10px 0;
-    font-size: 22px;
-  }
 
   /*
  * And let's slide it in from the left
  */
-  #menuToggle input:checked~ul {
-    left: 8px;
-    transform: none;
+
+#menuToggle input:checked ~ ul
+{
+  left: 8px;
+  transform: none;
+ 
+  
+}
+.top {
+  position: fixed;
+  top: 180%;
+  width: 100%;
+ 
+}
 
 
-  }
-
-  .top {
-    position: fixed;
-    top: 180%;
-    width: 100%;
-
-  }
-
-  #lijst {
-    color: black;
-  }
+#listSidenav>li {
+    font-size: smaller;
+}
 }
 
 
