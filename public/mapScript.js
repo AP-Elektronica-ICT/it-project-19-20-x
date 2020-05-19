@@ -182,7 +182,7 @@ function addlocation(objectID, long, lat, naam, straat, huisnr, gemeente, postco
     itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
   }
   
-  itemContent.innerHTML += `<br>_________________________________________________`;
+  itemContent.innerHTML += `<br>____________________________________________________________________________________________________________________`;
 
   itemList.appendChild(itemTitel);
   itemList.appendChild(itemContent);
