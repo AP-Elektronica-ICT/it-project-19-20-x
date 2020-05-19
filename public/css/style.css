@@ -161,10 +161,13 @@ button {
 }
 #listSidenav>li{
   font-size: medium;
+  
 }
 
 div#mySidenav {
   position: fixed;
+  
+  font-family: 'Antwerpen Regular';
 }
 
 @media (max-width: 767px){
