@@ -1,121 +1,112 @@
 * {
     box-sizing: border-box;
+    
+
+    
 }
 
-body {
-  background-color: grey;
-  display: grid;
-  grid-template-areas:
-    'header header header header header'
-    'main main main main main'
-    'footer footer footer footer footer';
+body{
+    background-color: grey;
+    display: grid;
+    grid-template-areas:
+        'header header header header header'
+        'main main main main main'
+        'footer footer footer footer footer';
 }
 
 
-header {
-  grid-area: header;
-}
-
-main {
-  grid-area: main;
-}
-
-footer {
-  grid-area: footer;
-}
+header{grid-area: header;}
+main{grid-area: main;}
+footer{grid-area: footer;}
 
 
 
 header {
-  height: 200px;
-  background-image: url("../fotoh.jpg");
-  margin: 0;
+    height: 200px;
+    background-image: url("../fotoh.jpg");
+    margin: 0;
 }
 
 main {
-  margin: 25px 25px;
+    margin: 25px 25px;
 }
 
 
 
-footer {
+footer{
   position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #333333;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #333333;
   padding: 25px 0;
   text-align: center;
-
+ 
 }
-
-.footer>span {
+.footer>span{
   vertical-align: middle;
-  text-align: center;
+   text-align: center;
 }
 
 
-li a,
-a:link {
-  color: black;
+li a, a:link{
+    color: black;
 }
 
 span {
-  color: white;
+    color: white;
 }
 
-main>#sidenav>#mySidenav>li {
-
-  font-weight: bold;
+main>#sidenav>#mySidenav>li{
+  
+font-weight: bold;
 }
 
 
-@font-face {
-  font-family: 'Antwerpen Regular';
-  src: "../Antwerpen_lettertype/Antwerpen webfonts/Antwerpen-Regulqr.ttf"
+@font-face
+{
+    font-family: 'Antwerpen Regular';
+    src: "../Antwerpen_lettertype/Antwerpen webfonts/Antwerpen-Regulqr.ttf"
 }
 
 /* Side Nav CSS*/
 .sidenav {
-  height: 100%;
-  width: 0;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: whitesmoke;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+    height: 100%;
+    width: 0;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: whitesmoke;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
 
+  }
+  
+  .sidenav a {
+    text-decoration: none;
+    
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: black;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
-
-.sidenav a {
-  text-decoration: none;
-
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: black;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-div.top>nav {
-  text-align: center;
-}
+div.top>nav{
+text-align: center;}
 
 div.top>nav>ul {
-  position: relative;
-  ;
-  top: 50px;
+  position: relative;; 
+  top:50px; 
   list-style-type: none;
   margin: 0;
   padding: 10px;
@@ -141,19 +132,19 @@ div.top>nav>ul>li a:hover {
 }
 
 
-#menu {
-  display: block;
-  position: fixed;
-  top: 100%;
-  left: 20%;
+  #menu{
+    display: block;
+        position: fixed;
+        top: 100%;
+        left: 20%;
+  }
+ 
+  
+#map 
+{
+    position: relative;
+    z-index: 0;
 }
-
-
-#map {
-  position: right;
-  z-index: 0;
-}
-
 .location {
   margin-bottom: 20%;
   background-color: #333333;
@@ -164,12 +155,10 @@ div.top>nav>ul>li a:hover {
   font-size: 16px;
   border: 2px solid #555555;
 }
-
 button {
   background-color:gray;
   color: white;
 }
-
 #listSidenav>li{
   font-size: medium;
   
@@ -179,23 +168,22 @@ div#mySidenav {
   position: fixed;
   
   font-family: 'Antwerpen Regular';
-
-}
-@media (max-width: 767px) {
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  div.top>nav>ul>li a {
-    color: white;
-    padding: 10px 10px;
-    text-decoration: none;
-  }
-
 }
 
+@media (max-width: 767px){
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      div.top>nav>ul>li a {
+        color: white;
+        padding: 10px 10px;
+        text-decoration: none;
+    }
+     
+}
 .close {
   position: absolute;
   right: 32px;
@@ -204,13 +192,10 @@ div#mySidenav {
   height: 32px;
   opacity: 0.3;
 }
-
 .close:hover {
   opacity: 1;
 }
-
-.close:before,
-.close:after {
+.close:before, .close:after {
   position: absolute;
   left: 15px;
   content: ' ';
@@ -218,12 +203,10 @@ div#mySidenav {
   width: 2px;
   background-color: #333;
 }
-
 .close:before {
   transform: rotate(45deg);
   background-color: black;
 }
-
 .close:after {
   transform: rotate(-45deg);
   background-color: black;
@@ -231,96 +214,109 @@ div#mySidenav {
 
 @media (max-width: 475px) {
 
-  img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-    -webkit-user-select: none;
-    user-select: none;
-  }
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    
+      
+      #menuToggle
+{
+  display: block;
+        position: fixed;
+        top: 30px;
+        right: 20px;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
 
-  #menuToggle a {
-    text-decoration: none;
-    color: #232323;
-    transition: color 0.3s ease;
-  }
-
-  #menuToggle>ul>li :hover {
-    color: tomato;
-  }
+#menuToggle a
+{
+  text-decoration: none;
+  color: #232323;
+  transition: color 0.3s ease;
+}
 
 
-  #menuToggle input {
-    display: block;
-    width: 40px;
-    height: 32px;
-    position: absolute;
-    top: -7px;
-    left: -5px;
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
 
-    cursor: pointer;
-
-    opacity: 0;
-    /* hide this */
-    z-index: 2;
-    /* and place it over the hamburger */
-
-    -webkit-touch-callout: none;
-  }
-
-  /*
+/*
  * Just a quick hamburger
  */
-  #menuToggle span {
-    display: block;
-    width: 33px;
-    height: 4px;
-    margin-bottom: 5px;
-    position: relative;
-    background: red;
-    border-radius: 3px;
-    z-index: 1;
-    transform-origin: 4px 0px;
-    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-      background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
-      opacity 0.55s ease;
-  }
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background:red;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
 
-  #menuToggle span:first-child {
-    transform-origin: 0% 0%;
-  }
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
 
-  #menuToggle span:nth-last-child(2) {
-    transform-origin: 0% 100%;
-  }
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
 
-  /* 
+/* 
  * Transform all the slices of hamburger
  * into a crossmark.
  */
-  #menuToggle input:checked~span {
-    opacity: 1;
-    transform: rotate(45deg) translate(-2px, -1px);
-    background: #232323;
-  }
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
 
-  /*
+/*
  * But let's hide the middle one.
  */
-  #menuToggle input:checked~span:nth-last-child(3) {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
-  }
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
 
-  /*
+/*
  * Ohyeah and the last one should go the other direction
  */
-  #menuToggle input:checked~span:nth-last-child(2) {
-    transform: rotate(-45deg) translate(0, -1px);
-  }
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
 
-  /*
+/*
  * Make this absolute positioned
  * at the top left of the screen
  */
@@ -347,11 +343,9 @@ div#mySidenav {
     font-size: 20px;
 }
 
-
-  /*
+/*
  * And let's slide it in from the left
  */
-
 #menuToggle input:checked ~ ul
 {
   left: 8px;
@@ -377,25 +371,15 @@ div#mySidenav {
   Contact Pagina CSS
 */
 /* Style inputs with type="text", select elements and textareas */
-input[type=text],
-select,
-textarea {
-  width: 100%;
-  /* Full width */
-  padding: 10px;
-  /* Some padding */
-  border: 1px solid #ccc;
-  /* Gray border */
-  border-radius: 4px;
-  /* Rounded borders */
-  box-sizing: border-box;
-  /* Make sure that padding and width stays in place */
-  margin-top: 6px;
-  /* Add a top margin */
-  margin-bottom: 16px;
-  /* Bottom margin */
-  resize: vertical
-    /* Allow the user to vertically resize the textarea (not horizontally) */
+input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  padding: 10px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
 }
 
 /* Style the submit button with a specific background color etc */
@@ -416,21 +400,20 @@ input[type=submit] {
 }
 
 
-#listSidenav>li {
+#listSidenav>li{
   list-style: none;
   margin-left: -75px;
 }
 
 /*for changing the favoriteIcon */
 
-.favoriteOn {
+.favoriteOn{
   color: yellow;
 }
 
-.favoriteOff {
+.favoriteOff{
   color: white;
 }
 
-#favoritecheck {
-  -webkit-appearance: checkbox;
-}
+
+
