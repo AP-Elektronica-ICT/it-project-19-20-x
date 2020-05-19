@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="nl-be">
-<head>   
+
+<head>
     <%- include('partials/meta') %>
 </head>
-  <body>
+
+<body>
     <%- include('partials/header') %>
     <main>
         <!-- Sidenav -->
@@ -13,7 +15,9 @@
             <div id="mySidenav" class="sidenav">
                 <form id="filterForm" action="" method="get">
                     <a href="#" onclick="closeNav()" class="close"></a>
-                    <label for="Categorieën"><p>Categorieën:</p></label>
+                    <label for="Categorieën">
+                        <p>Categorieën:</p>
+                    </label>
                     <select name="Categorieën">
                         <option value="all">all</option>
                         <option value="Museum">Museum</option>
@@ -25,7 +29,9 @@
                         <option value="Museumdepot">Museumdepot</option>
                         <option value="Cultuurcentrum">Cultuurcentrum</option>
                     </select>
-                    <label for="postcodes"><p> postcodes:</p></label>
+                    <label for="postcodes">
+                        <p> postcodes:</p>
+                    </label>
                     <select name="postcodes">
                         <option value="all">all</option>
                         <option value="2000">2000</option>
@@ -35,26 +41,33 @@
                         <option value="2050">2050</option>
                         <option value="2060">2060</option>
                         <option value="2018">2018</option>
+                        <option value="2100">2100</option>
+                        <option value="2180">2180</option>
+                        <option value="2610">2610</option>
+                        <option value="2650">2650</option>
                     </select>
-                    <label for="straatnaam"><p>straatnaam:</p></label>
+                    <label for="straatnaam">
+                        <p>straatnaam:</p>
+                    </label>
                     <input type="text" name="straatnaam">
-                    <label for="favorite123">favorieten:</label><input type="checkbox" name="favorites" id="favorites" checked><br>
+                    <label for="favorites"> favorieten:</label><input type="checkbox" id="favoritecheck"
+                        name="favorites"><br>
                     <input type="submit" value="Filter">
                 </form>
-             <ul id="listSidenav"></ul>
-              </div>
+                <ul id="listSidenav"></ul>
+            </div>
         </div>
         <!-- Map -->
-            <div id="map"></div> 
+        <div id="map"></div>
 
         </div>
         <!-- Locatie gebruiker -->
-       <button class="location" onclick="getLocation()">Huidige Locatie</button>
+        <button class="location" onclick="getLocation()">Huidige Locatie</button>
         <p id="locatie"></p>
 
-        
-        
-        
+
+
+
     </main>
     <%- include('partials/footer') %>
 </body>
