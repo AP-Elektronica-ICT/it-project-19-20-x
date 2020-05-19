@@ -1,6 +1,8 @@
 * {
     box-sizing: border-box;
     
+
+    
 }
 
 body{
@@ -154,7 +156,6 @@ div.top>nav>ul>li a:hover {
   border: 2px solid #555555;
 }
 button {
-  border-color: blacks;
   background-color:gray;
   color: white;
 }
@@ -201,9 +202,11 @@ div#mySidenav {
 }
 .close:before {
   transform: rotate(45deg);
+  background-color: black;
 }
 .close:after {
   transform: rotate(-45deg);
+  background-color: black;
 }
 
 @media (max-width: 475px) {
@@ -233,11 +236,6 @@ div#mySidenav {
   text-decoration: none;
   color: #232323;
   transition: color 0.3s ease;
-}
-
-#menuToggle>ul>li :hover
-{
-  color: tomato;
 }
 
 
@@ -323,23 +321,23 @@ div#mySidenav {
 {
   position: absolute;
   width: 200px;
-  margin: -175px 0 0 -130px;
-  padding: 50px;
-  padding-top: 175px;
+  margin: -60px 0 0 -100px;
+  padding: 15px;
   
   background: #ededed;
   list-style-type: none;
   /* to stop flickering of text in safari */
   transform-origin: 100px;
-  transform: translate(0, -100%);
+  transform: translate(100%,0 );
   
-  transition: transform 2s cubic-bezier(0.77,2,1,1.0);
+  transition: transform 1s cubic-bezier(0.7,1,1,1.0);
 }
 
 #menu li
 {
-  padding: 10px 0;
-  font-size: 22px;
+  padding: 7px;
+  font-family: 'Antwerpen Regular';
+    font-size: 20px;
 }
 
 /*
@@ -358,8 +356,10 @@ div#mySidenav {
   width: 100%;
  
 }
-#lijst {
-  color: black;
+
+
+#listSidenav>li {
+    font-size: smaller;
 }
 }
 
