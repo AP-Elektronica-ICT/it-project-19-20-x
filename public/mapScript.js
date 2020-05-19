@@ -168,47 +168,52 @@ async function getjson(e){
 }
 
 function addlocation(objectID, long, lat, naam, straat, huisnr, gemeente, postcode, email, telefoon, link) {
-          //markers
-          let list = document.getElementById("listSidenav");
-          const marker = L.marker([long,lat],{icon: Icon}).addTo(map);
-          marker.bindPopup("<br>" + gemeente + "<br>" +  "<b>" + naam + "</b>" + "<br>" + straat + " " + huisnr + "<br>" + postcode  + "<br>"  + `<button onclick="getRoute(${long}, ${lat})">Route</button>`)
-          markers.push(marker);
 
-          //lijst
-          let listItem = document.createElement("li");
-          let itemList = document.createElement("ul");
-          let itemTitel = document.createElement("li");
-          let itemContent =  document.createElement("li");
-          itemTitel.innerHTML = "<b>" + naam + "</b>";
-          itemContent.innerHTML = "locatie: "+ straat + " " + huisnr + "<br>" + postcode + " " + gemeente ;
-          if(email != undefined) {
-            itemContent.innerHTML += `<br> e-mail: <a href = "mailto: ${email}">${email}</a>`;
-          }
-          if(telefoon != undefined) {
-            itemContent.innerHTML += "<br> tel: " + telefoon 
-          }
-          if(link != undefined) {
-            itemContent.innerHTML += `<br> link: <a href="http://${link}">${link}</a>`;
-          }
-          itemContent.innerHTML += `<br> <button onclick="getRoute(${long}, ${lat})">Route</button>`;
-          
-          itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff"><i onclick="favorite(${objectID})" class="fa fa-star"></i> </button>`;
-          
-          itemContent.innerHTML += `<br>_________________________________________________`;
-          
-          //to change button to is in or not in favorites. (WIP)
-          // if (favoritearray.includes(culjson.features[index].attributes.OBJECTID)) {
-          //   itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOn"><i onclick="favorite(this, ${objectID})" class="fa fa-star-o"></i> </button>`;
-          // } 
-          // else {
-          //   itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff"><i onclick="favorite(this, ${objectID})" class="fa fa-star-o"></i> </button>`;
-          // }
-          
+  //add marker
+  let list = document.getElementById("listSidenav");
+  const marker = L.marker([long, lat], {
+    icon: Icon
+  }).addTo(map);
+  marker.bindPopup("<br>" + gemeente + "<br>" + "<b>" + naam + "</b>" + "<br>" + straat + " " + huisnr + "<br>" + postcode + "<br>" + `<button onclick="getRoute(${long}, ${lat})">Route</button>`)
+  markers.push(marker);
 
-          itemList.appendChild(itemTitel);
-          itemList.appendChild(itemContent);
-          listItem.appendChild(itemList);
-          list.appendChild(listItem);
+  //add listitem
+  let listItem = document.createElement("li");
+  let itemList = document.createElement("ul");
+  let itemTitel = document.createElement("li");
+  let itemContent = document.createElement("li");
+  itemTitel.innerHTML = "<b>" + naam + "</b>";
+  itemContent.innerHTML = "locatie: " + straat + " " + huisnr + "<br>" + postcode + " " + gemeente;
+  if (email != undefined) {
+    itemContent.innerHTML += `<br> e-mail: <a href = "mailto: ${email}">${email}</a>`;
+  }
+
+  if (telefoon != undefined) {
+    itemContent.innerHTML += "<br> tel: " + telefoon
+  }
+  if (link != undefined) {
+    itemContent.innerHTML += `<br> link: <a href="http://${link}">${link}</a>`;
+  }
+  itemContent.innerHTML += `<br> <button onclick="getRoute(${long}, ${lat})">Route</button>`;
+
+  // to change button to is in or not in favorites.
+  let favoritearray = JSON.parse(window.localStorage.getItem('favorites'));
+
+  if (favoritearray == null) {
+    favoritearray = [];
+  }
+
+  if (favoritearray.includes(objectID)) {
+    itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOn" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
+  } else {
+    itemContent.innerHTML += `<br> <button id="${objectID}" class="favoriteOff" onclick="favorite(${objectID})"><i class="fa fa-star"></i> </button>`;
+  }
+ itemContent.innerHTML += `<br>_________________________________________________`;
+  itemList.appendChild(itemTitel);
+  itemList.appendChild(itemContent);
+  listItem.appendChild(itemList);
+  list.appendChild(listItem);
+
 }
 
 window.addEventListener("load", getjson);
