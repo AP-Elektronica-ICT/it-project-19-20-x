@@ -2,8 +2,13 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const ejs = require('ejs');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+
 //Requires  voor Database
-const {MongoClient} = require('mongodb');
+const {
+  MongoClient
+} = require('mongodb');
 const uri = 'mongodb+srv://Lars:APLabo@oefeningenwebont-fdenf.mongodb.net/test?retryWrites=true&w=majority';
 const DATABASE = 'IT-Project-X';
 const COLLECTION_DATABASE = 'Users';
@@ -19,43 +24,72 @@ const app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({extended: true}));
 
+app.get('/', (req, res) => {
+  res.render('index')
+});
 
-  app.get('/', (req,res) => {
-    res.render('index')});
-  
 
 // Views voor de andere paginas
 // Contact pagina
-app.get('/contact', (req,res) => 
-{
+app.get('/contact', (req, res) => {
   res.render('contact')
 });
 // Login pagina
-app.get('/login', (req,res) => 
-{
+app.get('/login', (req, res) => {
   res.render('login')
 });
 
-//erfgoed data
-app.get('/jsonerfgoed', async (req,res) => {
-const erfUrl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1=1&outFields=*&outSR=4326&f=json";
-const fetchResponse = await fetch(erfUrl);
-const json = await fetchResponse.json();
-res.json(json);
-});
+async function apistart() {
+  const erfUrl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/293/query?where=1=1&outFields=*&outSR=4326&f=json";
+  const erfResponse = await fetch(erfUrl);
+  const erfjson = await erfResponse.json();
 
-//cultuur data
-app.get('/jsoncultuur', async (req,res) => {
-  const url = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json";
-  const response = await fetch(url);
-  const json = await response.json();
-  res.json(json);
+  const culurl = "https://geodata.antwerpen.be/arcgissql/rest/services/P_Portal/portal_publiek4/MapServer/292/query?where=1%3D1&outFields=*&outSR=4326&f=json";
+  const culresponse = await fetch(culurl);
+  const culjson = await culresponse.json();
+
+  //erfgoed data
+  app.get('/jsonerfgoed', async (req, res) => {
+    res.json(erfjson);
   });
 
+  //cultuur data
+  app.get('/jsoncultuur', async (req, res) => {
+    res.json(culjson);
+  });
+}
 
-app.listen(app.get('port'), () =>
-{
+apistart();
+
+app.post('/send-email', (req, res) => {
+
+  // Instantiate the SMTP server
+  const smtpTrans = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: "opdrachtcms.ap@gmail.com",
+      pass: "APLabo12"
+    }
+  })
+
+  // Specify what the email will look like
+  const mailOpts = {
+    from: 'Your sender info here', // This is ignored by Gmail
+    to: "opdrachtcms.ap@gmail.com",
+    subject: 'New message from contact form',
+    text: `${req.body.firstname} (${req.body.lastname}) says: ${req.body.subject}`
+  }
+
+  // Attempt to send the email
+  smtpTrans.sendMail(mailOpts, (error, response) => {
+  })
+})
+
+app.listen(app.get('port'), () => {
   console.log(`Express Started on http://localhost:${
     app.get('port')}; press Ctrl-c to terminate.`);
 });
