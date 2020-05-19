@@ -2,6 +2,9 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const ejs = require('ejs');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
+
 //Requires  voor Database
 const {
   MongoClient
@@ -21,7 +24,7 @@ const app = express();
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
-
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
   res.render('index')
@@ -59,6 +62,32 @@ async function apistart() {
 }
 
 apistart();
+
+app.post('/send-email', (req, res) => {
+
+  // Instantiate the SMTP server
+  const smtpTrans = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: "opdrachtcms.ap@gmail.com",
+      pass: "APLabo12"
+    }
+  })
+
+  // Specify what the email will look like
+  const mailOpts = {
+    from: 'Your sender info here', // This is ignored by Gmail
+    to: "opdrachtcms.ap@gmail.com",
+    subject: 'New message from contact form',
+    text: `${req.body.firstname} (${req.body.lastname}) says: ${req.body.subject}`
+  }
+
+  // Attempt to send the email
+  smtpTrans.sendMail(mailOpts, (error, response) => {
+  })
+})
 
 app.listen(app.get('port'), () => {
   console.log(`Express Started on http://localhost:${
