@@ -151,7 +151,7 @@ div.top>nav>ul>li a:hover {
 
 
 #map {
-  position: relative;
+  position: right;
   z-index: 0;
 }
 
