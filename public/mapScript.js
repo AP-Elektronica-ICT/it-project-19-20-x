@@ -6,7 +6,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var greenIcon = L.icon({
-  iconUrl: 'icon.png',
+  iconUrl: 'icon1.png',
   iconSize: [32, 32], // size of the icon
   iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
   popupAnchor: [0, -35] // point from which the popup should open relative to the iconAnchor
@@ -206,7 +206,7 @@ function getLocation() {
 function showPosition(position) {
   console.log(position.coords.longitude, position.coords.latitude);
   L.marker([position.coords.latitude, position.coords.longitude], {
-    icon: Icon
+    icon: greenIcon
   }).addTo(map);
 }
 
